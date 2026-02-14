@@ -1481,6 +1481,7 @@ textarea {
 
 .fade-in {
   animation: fadeIn 0.35s ease-out;
+  margin-block: 2rem;
 }
 
 .slide-up {
@@ -1860,5 +1861,39 @@ textarea {
   .main-container {
     max-width: 100%;
     padding-bottom: 0;
+  }
+}
+
+/* Beating Heart Animation */
+.beating-heart {
+  display: inline-block;
+  animation: beat 1.5s infinite;
+  margin: 0 4px;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+
+  14% {
+    transform: scale(1.3);
+    filter: hue-rotate(45deg);
+  }
+
+  28% {
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+
+  42% {
+    transform: scale(1.3);
+    filter: hue-rotate(90deg);
+  }
+
+  70% {
+    transform: scale(1);
+    filter: hue-rotate(0deg);
   }
 }

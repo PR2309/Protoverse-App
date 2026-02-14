@@ -2,11 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
-// https://vite.dev/config/
 export default defineConfig({
-  // GitHub Pages deploys to /<repo-name>/
-  // Change 'Protoverse' to your actual GitHub repo name
-  base: '/Protoverse/',
   plugins: [
     react(),
     VitePWA({
@@ -20,8 +16,8 @@ export default defineConfig({
         background_color: '#F0F2F5',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/Protoverse/',
-        start_url: '/Protoverse/',
+        scope: '/',
+        start_url: '/',
         icons: [
           {
             src: 'icon-192.svg',
@@ -71,5 +67,5 @@ export default defineConfig({
         ]
       }
     })
-  ],
+  ]
 })
