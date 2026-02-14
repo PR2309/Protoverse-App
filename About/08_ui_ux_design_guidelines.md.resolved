@@ -1,0 +1,661 @@
+# UI/UX Design Guidelines
+## Early Emotional Distress Detection & Support App
+
+---
+
+## 1. Design Philosophy
+
+### 1.1 Core Design Principles
+
+**Calm, Not Clinical**
+- Warm, approachable aesthetic
+- Avoid sterile medical feel
+- Soft, organic shapes
+
+**Safe, Not Scary**
+- No alarming visuals or language
+- Gentle color transitions
+- Predictable interactions
+
+**Simple, Not Simplistic**
+- Minimal cognitive load
+- Clear information hierarchy
+- Sophisticated simplicity
+
+**Empathetic, Not Patronizing**
+- Respectful tone
+- Validate without condescension
+- Empower, don't pity
+
+### 1.2 Emotional Design Goals
+
+**Users Should Feel:**
+- ✅ Safe and protected
+- ✅ Understood and validated
+- ✅ Hopeful and motivated
+- ✅ In control of their journey
+
+**Users Should NOT Feel:**
+- ❌ Judged or criticized
+- ❌ Overwhelmed or anxious
+- ❌ Infantilized or patronized
+- ❌ Pressured or rushed
+
+---
+
+## 2. Color Palette
+
+### 2.1 Primary Colors
+
+**Calming Blue (Primary)**
+- **Hex:** #4A90E2
+- **Use:** Primary actions, headers, progress indicators
+- **Psychology:** Trust, calm, stability
+
+**Soft Teal (Secondary)**
+- **Hex:** #5DADE2
+- **Use:** Secondary actions, accents
+- **Psychology:** Healing, balance, clarity
+
+**Gentle Green (Success)**
+- **Hex:** #6FCF97
+- **Use:** Positive feedback, progress, improvements
+- **Psychology:** Growth, hope, renewal
+
+### 2.2 Neutral Colors
+
+**Warm White (Background)**
+- **Hex:** #F8F9FA
+- **Use:** Main background
+- **Psychology:** Clean, spacious, peaceful
+
+**Soft Gray (Text)**
+- **Hex:** #4A5568
+- **Use:** Body text
+- **Psychology:** Readable, non-aggressive
+
+**Light Gray (Borders)**
+- **Hex:** #E2E8F0
+- **Use:** Dividers, card borders
+- **Psychology:** Subtle separation
+
+### 2.3 Emotional State Colors
+
+**Mood Colors (for mood tracking):**
+- 😊 Great: #FFD93D (Warm Yellow)
+- 🙂 Good: #6FCF97 (Gentle Green)
+- 😐 Okay: #5DADE2 (Soft Teal)
+- 😞 Not Good: #A0AEC0 (Muted Blue-Gray)
+- 😢 Terrible: #9B8FBF (Soft Purple)
+
+**Note:** Avoid red for negative emotions (too alarming)
+
+### 2.4 Alert Colors
+
+**Warning (Burnout Alert)**
+- **Hex:** #F6AD55
+- **Use:** Burnout warnings, important notices
+- **Psychology:** Attention without panic
+
+**Crisis (Emergency)**
+- **Hex:** #E53E3E
+- **Use:** Emergency button only
+- **Psychology:** Urgent, immediate action needed
+
+### 2.5 Dark Mode
+
+**Background:** #1A202C (Dark Blue-Gray)
+**Text:** #E2E8F0 (Light Gray)
+**Primary:** #63B3ED (Lighter Blue)
+**Accents:** Adjusted for contrast
+
+---
+
+## 3. Typography
+
+### 3.1 Font Families
+
+**Primary Font:** Inter
+- **Use:** UI elements, buttons, labels
+- **Rationale:** Clean, modern, highly readable
+
+**Secondary Font:** Lora (Serif)
+- **Use:** Headings, emotional content
+- **Rationale:** Warm, approachable, human
+
+**Monospace Font:** JetBrains Mono
+- **Use:** Data displays (hours worked, dates)
+- **Rationale:** Clear, structured
+
+### 3.2 Type Scale
+
+| Element | Font | Size | Weight | Line Height |
+|---------|------|------|--------|-------------|
+| **H1 (Page Title)** | Lora | 28px | 600 | 1.3 |
+| **H2 (Section)** | Lora | 22px | 600 | 1.4 |
+| **H3 (Subsection)** | Inter | 18px | 600 | 1.4 |
+| **Body** | Inter | 16px | 400 | 1.6 |
+| **Small** | Inter | 14px | 400 | 1.5 |
+| **Button** | Inter | 16px | 600 | 1.2 |
+| **Caption** | Inter | 12px | 400 | 1.4 |
+
+### 3.3 Accessibility
+
+**Minimum Contrast Ratios:**
+- Body text: 4.5:1 (WCAG AA)
+- Large text: 3:1 (WCAG AA)
+- Interactive elements: 3:1
+
+**Font Sizes:**
+- Minimum: 14px (for small text)
+- Scalable up to 200% without breaking layout
+
+---
+
+## 4. Component Library
+
+### 4.1 Buttons
+
+**Primary Button**
+```
+Background: #4A90E2 (Calming Blue)
+Text: #FFFFFF (White)
+Border Radius: 8px
+Padding: 12px 24px
+Shadow: 0 2px 4px rgba(0,0,0,0.1)
+
+Hover: Background #3A7BC8
+Active: Background #2A6BB8
+```
+
+**Secondary Button**
+```
+Background: Transparent
+Text: #4A90E2
+Border: 2px solid #4A90E2
+Border Radius: 8px
+Padding: 12px 24px
+
+Hover: Background #F0F7FF
+```
+
+**Emergency Button**
+```
+Background: #E53E3E (Crisis Red)
+Text: #FFFFFF
+Border Radius: 12px
+Padding: 16px 32px
+Shadow: 0 4px 8px rgba(229,62,62,0.3)
+Icon: 🚨
+
+Hover: Background #C53030
+Pulse Animation: Subtle glow
+```
+
+### 4.2 Cards
+
+**Standard Card**
+```
+Background: #FFFFFF
+Border: 1px solid #E2E8F0
+Border Radius: 12px
+Padding: 20px
+Shadow: 0 1px 3px rgba(0,0,0,0.05)
+
+Hover: Shadow 0 4px 8px rgba(0,0,0,0.1)
+```
+
+**Elevated Card (Important)**
+```
+Background: #FFFFFF
+Border: None
+Border Radius: 12px
+Padding: 24px
+Shadow: 0 4px 12px rgba(0,0,0,0.1)
+```
+
+### 4.3 Input Fields
+
+**Text Input**
+```
+Background: #FFFFFF
+Border: 2px solid #E2E8F0
+Border Radius: 8px
+Padding: 12px 16px
+Font: Inter, 16px
+
+Focus: Border #4A90E2, Shadow 0 0 0 3px rgba(74,144,226,0.1)
+Error: Border #E53E3E
+```
+
+**Textarea (Journaling)**
+```
+Min Height: 120px
+Resize: Vertical only
+Font: Inter, 16px
+Line Height: 1.6
+```
+
+### 4.4 Mood Selector
+
+**Emoji-Based Selector**
+```
+Layout: Horizontal row of 5 emojis
+Size: 48px each
+Spacing: 16px between
+Selected: Scale 1.2, Shadow 0 4px 8px rgba(74,144,226,0.2)
+Unselected: Opacity 0.5
+
+Interaction: Tap to select, smooth scale animation
+```
+
+### 4.5 Progress Indicators
+
+**Linear Progress Bar**
+```
+Height: 8px
+Background: #E2E8F0
+Fill: Gradient (#4A90E2 to #5DADE2)
+Border Radius: 4px
+Animation: Smooth fill transition
+```
+
+**Circular Progress (Stress Gauge)**
+```
+Size: 120px
+Stroke Width: 12px
+Background: #E2E8F0
+Fill: Color based on level (Green → Yellow → Orange)
+Center: Numeric value + label
+```
+
+### 4.6 Notifications
+
+**In-App Notification**
+```
+Background: #FFFFFF
+Border Left: 4px solid #4A90E2 (info) / #F6AD55 (warning) / #E53E3E (crisis)
+Border Radius: 8px
+Padding: 16px
+Shadow: 0 2px 8px rgba(0,0,0,0.15)
+
+Animation: Slide in from top, auto-dismiss after 5s
+```
+
+---
+
+## 5. Layout & Spacing
+
+### 5.1 Grid System
+
+**Mobile (< 768px):**
+- Single column
+- 16px side margins
+- 24px vertical spacing between sections
+
+**Tablet (768px - 1024px):**
+- 2 columns for some sections
+- 24px side margins
+- 32px vertical spacing
+
+**Desktop (> 1024px):**
+- Max width: 1200px (centered)
+- 32px side margins
+- 40px vertical spacing
+
+### 5.2 Spacing Scale
+
+**Consistent spacing using 8px base:**
+- XS: 4px
+- S: 8px
+- M: 16px
+- L: 24px
+- XL: 32px
+- XXL: 48px
+
+### 5.3 Safe Areas
+
+**Bottom Navigation:**
+- Height: 64px
+- Safe area for iOS notch: 34px additional padding
+
+**Top Bar:**
+- Height: 56px
+- Status bar padding: 24px (iOS)
+
+---
+
+## 6. Iconography
+
+### 6.1 Icon Style
+
+**Style:** Outlined (not filled)
+**Stroke Width:** 2px
+**Size:** 24px (standard), 32px (large), 16px (small)
+**Color:** Inherit from context
+
+**Icon Library:** Feather Icons or Heroicons
+
+### 6.2 Key Icons
+
+| Feature | Icon | Meaning |
+|---------|------|---------|
+| **Mood Check-In** | 📝 or smile icon | Daily reflection |
+| **Emergency** | 🚨 or alert-circle | Crisis support |
+| **Breathing** | 🧘 or wind icon | Calm exercises |
+| **Chat** | 💬 or message-circle | AI support |
+| **Community** | 👥 or users icon | Peer support |
+| **Progress** | 📈 or trending-up | Growth tracking |
+| **Workload** | 💼 or briefcase | Work stress |
+| **Family** | 🏠 or home icon | Family pressure |
+
+---
+
+## 7. Interaction Patterns
+
+### 7.1 Gestures
+
+**Swipe:**
+- Swipe left/right on mood calendar to navigate months
+- Swipe down to refresh (pull-to-refresh)
+
+**Tap:**
+- Single tap for selection
+- Long press for additional options (e.g., delete journal entry)
+
+**Scroll:**
+- Smooth, momentum-based scrolling
+- Snap to sections where appropriate
+
+### 7.2 Animations
+
+**Micro-Interactions:**
+- Button press: Scale down to 0.95, duration 100ms
+- Card tap: Subtle lift (shadow increase), duration 200ms
+- Mood selection: Scale up to 1.2, duration 300ms
+
+**Transitions:**
+- Screen transitions: Slide (300ms, ease-in-out)
+- Modal appearance: Fade + scale (250ms)
+- Loading states: Skeleton screens (no spinners)
+
+**Emotional Animations:**
+- Progress milestones: Confetti or gentle sparkle
+- Crisis button: Subtle pulse (1s interval)
+
+### 7.3 Feedback
+
+**Visual Feedback:**
+- Button states: Default, Hover, Active, Disabled
+- Form validation: Real-time (on blur, not on every keystroke)
+- Success: Green checkmark + message
+- Error: Red border + helpful message
+
+**Haptic Feedback:**
+- Emergency button tap: Strong haptic
+- Mood selection: Light haptic
+- Milestone achievement: Success haptic pattern
+
+---
+
+## 8. Accessibility
+
+### 8.1 Screen Reader Support
+
+**Semantic HTML:**
+- Proper heading hierarchy (H1 → H2 → H3)
+- ARIA labels for icons and interactive elements
+- Alt text for images
+
+**Focus Management:**
+- Visible focus indicators (2px blue outline)
+- Logical tab order
+- Skip to main content link
+
+### 8.2 Color Accessibility
+
+**Color Blindness:**
+- Don't rely on color alone for information
+- Use icons + text labels
+- Test with color blindness simulators
+
+**Contrast:**
+- All text meets WCAG AA standards
+- Interactive elements have 3:1 contrast
+
+### 8.3 Motor Accessibility
+
+**Touch Targets:**
+- Minimum size: 44x44 pixels
+- Spacing: 8px between targets
+- Large buttons for critical actions
+
+**Alternative Inputs:**
+- Voice input for journaling
+- Keyboard navigation (web version)
+
+---
+
+## 9. Emotional Safety in Design
+
+### 9.1 Language Guidelines
+
+**Do:**
+- ✅ "How are you feeling today?" (open, non-judgmental)
+- ✅ "Your feelings are valid" (validating)
+- ✅ "You're not alone" (supportive)
+- ✅ "Would you like to try...?" (suggestive, not prescriptive)
+
+**Don't:**
+- ❌ "You should feel better" (dismissive)
+- ❌ "Just think positive" (toxic positivity)
+- ❌ "Everyone has problems" (minimizing)
+- ❌ "You're being dramatic" (judgmental)
+
+### 9.2 Visual Safety
+
+**Avoid:**
+- Sudden, jarring animations
+- Aggressive red (except emergency button)
+- Cluttered, overwhelming layouts
+- Triggering imagery
+
+**Use:**
+- Soft, gradual transitions
+- Calming colors and shapes
+- Generous white space
+- Abstract, non-triggering illustrations
+
+### 9.3 Trigger Warnings
+
+**For Peer Support:**
+- Optional content warnings before posts
+- Ability to filter out triggering topics
+- Blur sensitive content with "Show" button
+
+---
+
+## 10. Sample Wireframes
+
+### 10.1 Home Screen
+
+```
+┌─────────────────────────────────────┐
+│  ☰  Early Distress Support      🔔 │
+├─────────────────────────────────────┤
+│                                     │
+│  Good Evening, User 🌙              │
+│                                     │
+│  ┌───────────────────────────────┐ │
+│  │  📝 Daily Check-In             │ │
+│  │  How are you feeling today?   │ │
+│  │                                │ │
+│  │  😊 🙂 😐 😞 😢               │ │
+│  │                                │ │
+│  │  [Tap to Complete]             │ │
+│  └───────────────────────────────┘ │
+│                                     │
+│  🚨 [Need Help Now?]                │
+│                                     │
+│  ─────────────────────────────────  │
+│                                     │
+│  Your Progress This Week 📊         │
+│  ▓▓▓▓▓░░░░░ 5/7 check-ins          │
+│  Stress: ↓ 15% from last week      │
+│                                     │
+│  ─────────────────────────────────  │
+│                                     │
+│  Quick Actions                      │
+│  ┌─────┐ ┌─────┐ ┌─────┐           │
+│  │ 💬  │ │ 🧘  │ │ 👥  │           │
+│  │Chat │ │Calm │ │Talk │           │
+│  └─────┘ └─────┘ └─────┘           │
+│                                     │
+├═════════════════════════════════════┤
+│ [🏠 Home] [🧰 Tools] [📈 Progress] [⋯]│
+└─────────────────────────────────────┘
+```
+
+### 10.2 Mood Check-In Flow
+
+```
+Screen 1: Mood Selection
+┌─────────────────────────────────────┐
+│  ← Daily Check-In                   │
+├─────────────────────────────────────┤
+│                                     │
+│  How are you feeling today?         │
+│                                     │
+│  😊    🙂    😐    😞    😢        │
+│ Great Good Okay  Not  Terrible     │
+│                  Good               │
+│                                     │
+│  [Selected: 😐 Okay]                │
+│                                     │
+│  [Next]                             │
+└─────────────────────────────────────┘
+
+Screen 2: Stress Level
+┌─────────────────────────────────────┐
+│  ← Daily Check-In              2/5  │
+├─────────────────────────────────────┤
+│                                     │
+│  How stressed are you today?        │
+│                                     │
+│  Not Stressed    Extremely Stressed │
+│  ●────●────●────●────○              │
+│  1    2    3    4    5              │
+│                                     │
+│  [Selected: 4]                      │
+│                                     │
+│  [Back]                    [Next]   │
+└─────────────────────────────────────┘
+```
+
+### 10.3 Emergency Support Screen
+
+```
+┌─────────────────────────────────────┐
+│  🚨 You Don't Have to Face This    │
+│     Alone                           │
+├─────────────────────────────────────┤
+│                                     │
+│  We're concerned about you. Please  │
+│  reach out to someone who can help: │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  📞 Crisis Helplines (24/7)         │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ AASRA                       │   │
+│  │ 91-22-27546669              │   │
+│  │ [TAP TO CALL]               │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  ┌─────────────────────────────┐   │
+│  │ Vandrevala Foundation       │   │
+│  │ 1860-2662-345               │   │
+│  │ [TAP TO CALL]               │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  👤 Your Trusted Contact            │
+│  ┌─────────────────────────────┐   │
+│  │ Sarah (Best Friend)         │   │
+│  │ [CALL] [MESSAGE]            │   │
+│  └─────────────────────────────┘   │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  📋 [View My Safety Plan]           │
+│                                     │
+│  [I'm Safe Now]                     │
+└─────────────────────────────────────┘
+```
+
+---
+
+## 11. Design System Documentation
+
+### 11.1 Design Tokens
+
+**Maintain in JSON:**
+```json
+{
+  "colors": {
+    "primary": "#4A90E2",
+    "secondary": "#5DADE2",
+    "success": "#6FCF97",
+    "warning": "#F6AD55",
+    "danger": "#E53E3E"
+  },
+  "spacing": {
+    "xs": "4px",
+    "s": "8px",
+    "m": "16px",
+    "l": "24px",
+    "xl": "32px"
+  },
+  "typography": {
+    "fontFamily": {
+      "primary": "Inter",
+      "secondary": "Lora"
+    },
+    "fontSize": {
+      "h1": "28px",
+      "body": "16px",
+      "small": "14px"
+    }
+  }
+}
+```
+
+### 11.2 Component Documentation
+
+**For Each Component:**
+- Visual examples (light + dark mode)
+- Code snippets (React/Flutter)
+- Usage guidelines
+- Accessibility notes
+- Do's and Don'ts
+
+---
+
+## Conclusion
+
+These UI/UX design guidelines ensure the app:
+
+✅ **Feels safe and calming** through color and typography choices  
+✅ **Prioritizes accessibility** for all users  
+✅ **Maintains emotional safety** through thoughtful language and visuals  
+✅ **Provides clear, intuitive interactions** with minimal cognitive load  
+✅ **Builds trust** through consistent, predictable design  
+
+**The design is not just aesthetic—it's therapeutic.**
+
+---
+
+> [!NOTE]
+> **Next Steps:** These guidelines will inform high-fidelity mockups, prototyping, and developer handoff.

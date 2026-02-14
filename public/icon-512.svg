@@ -1,0 +1,26 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5DADE2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="url(#bgGradient512)"/>
+  
+  <!-- Heart with sprout icon -->
+  <g transform="translate(256, 256)">
+    <!-- Heart -->
+    <path d="M 0,-50 C -65,-120 -160,-80 -160,-25 C -160,25 -80,95 0,150 C 80,95 160,25 160,-25 C 160,-80 65,-120 0,-50 Z" 
+          fill="white" opacity="0.95"/>
+    
+    <!-- Sprout/leaf -->
+    <g transform="translate(0, -95)">
+      <path d="M 0,0 Q -20,-30 -12,-50 Q 0,-38 0,0 Z" fill="#6FCF97"/>
+      <path d="M 0,0 Q 20,-30 12,-50 Q 0,-38 0,0 Z" fill="#6FCF97"/>
+      <line x1="0" y1="0" x2="0" y2="-50" stroke="#6FCF97" stroke-width="5"/>
+    </g>
+  </g>
+</svg>

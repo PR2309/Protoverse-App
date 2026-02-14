@@ -1,0 +1,1184 @@
+# Feature Specifications & Use Cases
+## Early Emotional Distress Detection & Support App
+
+---
+
+## Overview
+
+This document provides detailed specifications for all 9 core features of the Early Emotional Distress Detection & Support App. Each feature is designed with user safety, privacy, and emotional well-being as top priorities.
+
+---
+
+## Feature 1: Daily Mood & Emotional Check-In
+
+### Purpose
+Enable early detection of emotional distress by tracking daily mood patterns and identifying concerning trends before they escalate to crisis.
+
+### User Benefit
+- Develop self-awareness of emotional patterns
+- Identify triggers and stressors
+- Receive early intervention when distress patterns emerge
+
+### Functional Requirements
+
+#### FR1.1: Daily Check-In Prompt
+- **Trigger:** Push notification at user-selected time (default: 9 PM)
+- **Frequency:** Once daily
+- **Dismissible:** Yes, but tracked as "skipped"
+- **Customization:** User can change notification time
+
+#### FR1.2: Mood Assessment Questions
+
+**Question Set:**
+1. **Overall Mood:** "How are you feeling today?"
+   - 😊 Great
+   - 🙂 Good
+   - 😐 Okay
+   - 😞 Not good
+   - 😢 Terrible
+
+2. **Stress Level:** "How stressed are you today?"
+   - Scale: 1 (Not stressed) to 5 (Extremely stressed)
+
+3. **Work Impact:** "Did work or workload affect you today?"
+   - Yes, significantly
+   - Yes, somewhat
+   - No, not really
+   - I didn't work today
+
+4. **Family Impact:** "Did family pressure affect you today?"
+   - Yes, significantly
+   - Yes, somewhat
+   - No, not really
+
+5. **Optional Open Response:** "Anything you want to note about today?"
+   - Free text (max 500 characters)
+
+#### FR1.3: Response Time
+- **Target:** Complete check-in in < 2 minutes
+- **Design:** Simple, visual, minimal typing
+
+#### FR1.4: Data Storage
+- All responses stored locally and encrypted
+- Synced to cloud with end-to-end encryption
+- Retention: Indefinite (user can delete)
+
+### User Flow
+
+```mermaid
+graph TD
+    A[Notification: Daily Check-In] --> B{User Opens App}
+    B -->|Yes| C[Mood Selection Screen]
+    B -->|Dismissed| D[Mark as Skipped]
+    C --> E[Stress Level Scale]
+    E --> F[Work Impact Question]
+    F --> G[Family Impact Question]
+    G --> H[Optional Note]
+    H --> I[Submit]
+    I --> J{Mood Analysis}
+    J -->|Concerning Pattern| K[Show Support Resources]
+    J -->|Normal| L[Show Encouragement]
+    K --> M[Save Data]
+    L --> M
+    M --> N[Return to Home]
+```
+
+### Early Detection Logic
+
+#### Alert Triggers:
+1. **Severe Mood (3+ consecutive days):**
+   - Mood: 😞 or 😢 for 3+ days
+   - Action: Suggest breathing exercise, peer support
+
+2. **High Stress (5+ consecutive days):**
+   - Stress level: 4-5 for 5+ days
+   - Action: Burnout warning, self-care suggestions
+
+3. **Crisis Indicators:**
+   - Mood: 😢 + Stress: 5 + Open response contains crisis keywords
+   - Action: Immediate crisis intervention screen
+
+### Privacy Considerations
+- Data never shared without explicit consent
+- No employer or family access
+- Anonymized for trend analysis only
+
+### Safety Mechanisms
+- Crisis keyword detection in open responses
+- Immediate intervention for severe patterns
+- Professional help suggestions
+
+---
+
+## Feature 2: Workload Stress Tracker
+
+### Purpose
+Help users recognize unhealthy work patterns and burnout risk by tracking working hours, deadlines, and overtime.
+
+### User Benefit
+- Visualize workload trends
+- Recognize burnout before it becomes severe
+- Evidence-based conversations with managers about workload
+
+### Functional Requirements
+
+#### FR2.1: Work Hours Logging
+
+**Input Methods:**
+1. **Manual Entry:** User logs start/end times
+2. **Quick Log:** "Worked late today" (adds 2 extra hours)
+3. **Calendar Integration:** Optional sync with Google/Outlook calendar
+
+**Data Captured:**
+- Work start time
+- Work end time
+- Break duration
+- Weekend work (yes/no)
+- On-call status (yes/no)
+
+#### FR2.2: Deadline Tracking
+- User can log upcoming deadlines
+- Deadline pressure rating (1-5)
+- Automatic reminder 3 days before deadline
+
+#### FR2.3: Overtime Calculation
+- Automatic calculation of hours beyond 40/week
+- Weekly overtime summary
+- Monthly overtime trends
+
+#### FR2.4: Burnout Risk Assessment
+
+**Burnout Indicators:**
+| Indicator | Threshold | Risk Level |
+|-----------|-----------|------------|
+| Weekly hours | 50-60 hours | Medium |
+| Weekly hours | 60+ hours | High |
+| Consecutive weekend work | 2+ weekends | Medium |
+| Consecutive weekend work | 4+ weekends | High |
+| Overtime trend | Increasing 3+ weeks | Medium |
+| Combined high stress + high hours | Both present | High |
+
+### User Flow
+
+```mermaid
+graph TD
+    A[Open Workload Tracker] --> B[View Weekly Summary]
+    B --> C{Log Today's Hours?}
+    C -->|Yes| D[Enter Start/End Time]
+    C -->|No| E[View Trends]
+    D --> F[Log Breaks]
+    F --> G[Weekend Work?]
+    G --> H[Calculate Total Hours]
+    H --> I{Burnout Risk?}
+    I -->|High Risk| J[Burnout Alert]
+    I -->|Normal| K[Save Data]
+    J --> L[Show Coping Resources]
+    L --> K
+    K --> M[Update Dashboard]
+```
+
+### Visualizations
+
+1. **Weekly Bar Chart:** Hours worked per day
+2. **Monthly Trend Line:** Average weekly hours over time
+3. **Overtime Heatmap:** Visual representation of overtime frequency
+4. **Burnout Risk Gauge:** Visual indicator (green/yellow/red)
+
+### Burnout Alert
+
+**When Triggered:**
+- High-risk burnout indicators present
+
+**Alert Message:**
+> ⚠️ **Burnout Alert**
+> 
+> You've worked 65+ hours for 3 consecutive weeks. This pattern increases risk of burnout.
+> 
+> **Suggested Actions:**
+> - Take a mental health day
+> - Talk to your manager about workload
+> - Practice self-care this weekend
+> - Connect with peer support
+
+### Privacy Considerations
+- Work data never shared with employers
+- User controls all data sharing
+- Can export data for personal use
+
+---
+
+## Feature 3: Family Pressure Assessment
+
+### Purpose
+Validate and normalize feelings related to family expectations, comparisons, and pressure through reflective assessments and journaling.
+
+### User Benefit
+- Recognize that family pressure is a legitimate stressor
+- Process emotions in a safe, private space
+- Identify patterns and triggers
+- Reduce shame and guilt
+
+### Functional Requirements
+
+#### FR3.1: Weekly Assessment
+
+**Frequency:** Once per week (user-selected day)
+
+**Assessment Questions:**
+1. "This week, did you feel pressure to meet family expectations?"
+   - Not at all
+   - A little
+   - Moderately
+   - Quite a bit
+   - Extremely
+
+2. "Did family comparisons (to siblings, cousins, friends) affect your self-worth?"
+   - Not at all
+   - A little
+   - Moderately
+   - Quite a bit
+   - Extremely
+
+3. "Did you feel guilty about your career or life choices?"
+   - Not at all
+   - A little
+   - Moderately
+   - Quite a bit
+   - Extremely
+
+4. "Did you suppress your feelings to avoid disappointing family?"
+   - Not at all
+   - A little
+   - Moderately
+   - Quite a bit
+   - Extremely
+
+5. "Rate your overall family-related stress this week:"
+   - Scale: 1 (No stress) to 5 (Extreme stress)
+
+#### FR3.2: Emotional Journaling
+
+**Purpose:** Safe space to express suppressed emotions
+
+**Features:**
+- Private, encrypted journal entries
+- Optional prompts:
+  - "What family expectation bothered you most this week?"
+  - "How did comparisons make you feel?"
+  - "What do YOU want, separate from family expectations?"
+  - "What would you say to your family if there were no consequences?"
+
+**Privacy:**
+- Completely private (not shared with AI or community)
+- User can delete entries anytime
+- Optional: Share anonymously in peer support
+
+#### FR3.3: Validation Responses
+
+**After Assessment Completion:**
+
+If high family pressure detected:
+> 💙 **Your Feelings Are Valid**
+> 
+> Family pressure is real and affects many early-career individuals. You are not weak for feeling this way.
+> 
+> **Remember:**
+> - Your worth is not determined by family approval
+> - It's okay to have different goals than your family expects
+> - Setting boundaries is healthy, not selfish
+> 
+> **Suggested Resources:**
+> - Read peer stories about family pressure
+> - Journal about your authentic desires
+> - Practice boundary-setting techniques
+
+### User Flow
+
+```mermaid
+graph TD
+    A[Weekly Reminder: Family Assessment] --> B[Open Assessment]
+    B --> C[Answer 5 Questions]
+    C --> D{High Pressure Detected?}
+    D -->|Yes| E[Validation Message]
+    D -->|No| F[Encouragement Message]
+    E --> G[Suggest Journaling]
+    F --> G
+    G --> H{User Wants to Journal?}
+    H -->|Yes| I[Open Journal with Prompts]
+    H -->|No| J[Save Assessment]
+    I --> K[Write Entry]
+    K --> J
+    J --> L[Update Trends]
+```
+
+### Trend Analysis
+
+**Tracked Over Time:**
+- Family pressure score trends
+- Guilt levels
+- Suppression patterns
+- Correlation with overall mood
+
+**Insights Provided:**
+- "Your family pressure has increased over the past month"
+- "You've felt guilty 8 out of 12 weeks"
+- "Family stress correlates with your low mood days"
+
+### Safety Mechanisms
+- Detect severe emotional distress in journal entries
+- Suggest professional help if patterns worsen
+- Crisis intervention if suicidal ideation expressed
+
+---
+
+## Feature 4: AI-Based Emotional Support Chat
+
+### Purpose
+Provide immediate, empathetic, non-judgmental listening when users feel low, without diagnosis or medical advice.
+
+### User Benefit
+- Immediate support 24/7
+- No judgment or stigma
+- Validation of feelings
+- Calming techniques
+
+> [!WARNING]
+> **Critical Limitation:** This AI chat is SUPPORTIVE ONLY. It does NOT diagnose, treat, or replace professional mental health care.
+
+### Functional Requirements
+
+#### FR4.1: Chat Availability
+- **Access:** Available 24/7
+- **Response Time:** < 3 seconds
+- **Session Length:** Unlimited
+- **History:** Saved locally, encrypted
+
+#### FR4.2: AI Behavior Guidelines
+
+**Core Principles:**
+1. **Empathy First:** Validate emotions, never dismiss
+2. **Non-Judgmental:** No criticism or blame
+3. **Supportive Only:** No diagnosis or medical advice
+4. **Crisis Aware:** Detect crisis indicators and escalate
+
+**Example Interactions:**
+
+**User:** "I'm so tired. I can't do this anymore."
+
+**AI Response:**
+> I hear you. Feeling exhausted and overwhelmed is really hard. Your feelings are completely valid.
+> 
+> It sounds like you're carrying a heavy load right now. Would you like to talk about what's making you feel this way?
+
+**User:** "Everyone expects so much from me. I feel like I'm failing."
+
+**AI Response:**
+> That sounds incredibly overwhelming. When everyone has expectations, it can feel like there's no room to breathe or be yourself.
+> 
+> You're not failing. You're navigating really difficult pressures. That takes strength.
+> 
+> What expectation feels heaviest right now?
+
+#### FR4.3: Crisis Detection
+
+**Crisis Keywords/Phrases:**
+- "I want to die"
+- "I want to end it all"
+- "Suicide"
+- "Kill myself"
+- "No point in living"
+- "Everyone would be better off without me"
+
+**Crisis Response Protocol:**
+
+**Immediate AI Response:**
+> I'm really concerned about you. What you're feeling sounds incredibly painful, and I want you to know that you don't have to face this alone.
+> 
+> **Please reach out to someone who can help right now:**
+> 
+> 🚨 **Crisis Helplines:**
+> - AASRA: 91-22-27546669
+> - Vandrevala Foundation: 1860-2662-345
+> - iCall: 91-22-25521111
+> 
+> Would you like me to help you create a safety plan?
+
+**Simultaneous Actions:**
+- Display emergency support screen
+- Offer to notify trusted contact (if configured)
+- Provide safety planning tool
+
+#### FR4.4: Suggested Coping Techniques
+
+**When Appropriate, AI Suggests:**
+- Breathing exercises: "Would you like to try a 5-minute breathing exercise?"
+- Grounding techniques: "Let's try a grounding exercise to help you feel more present"
+- Journaling: "Sometimes writing helps. Would you like to journal about this?"
+- Peer support: "Others have felt this way too. Would you like to read their stories?"
+
+#### FR4.5: Boundaries and Disclaimers
+
+**Prominent Disclaimer (Shown on First Use):**
+> 💙 **About This Chat**
+> 
+> This AI provides emotional support and listens without judgment. However:
+> 
+> ❌ It does NOT diagnose mental health conditions
+> ❌ It does NOT provide medical or therapeutic treatment
+> ❌ It does NOT replace professional mental health care
+> 
+> ✅ It DOES validate your feelings
+> ✅ It DOES suggest coping techniques
+> ✅ It DOES guide you to professional help when needed
+
+### User Flow
+
+```mermaid
+graph TD
+    A[User Opens Chat] --> B{First Time?}
+    B -->|Yes| C[Show Disclaimer]
+    B -->|No| D[Chat Interface]
+    C --> D
+    D --> E[User Types Message]
+    E --> F{Crisis Keywords?}
+    F -->|Yes| G[Crisis Response]
+    F -->|No| H[Empathetic Response]
+    G --> I[Emergency Support Screen]
+    H --> J{Suggest Coping Tool?}
+    J -->|Yes| K[Offer Breathing/Grounding]
+    J -->|No| L[Continue Conversation]
+    K --> L
+    L --> M{User Continues?}
+    M -->|Yes| E
+    M -->|No| N[Save Chat History]
+```
+
+### Privacy Considerations
+- Chat history stored locally, encrypted
+- Never shared with third parties
+- User can delete chat history anytime
+- Anonymized data used only to improve AI responses (opt-in)
+
+### Safety Mechanisms
+- Real-time crisis keyword detection
+- Escalation to emergency resources
+- Limits on chat duration if user seems in crisis (encourages professional help)
+- Regular reminders that AI is not a therapist
+
+---
+
+## Feature 5: Guided Mental Health Tools
+
+### Purpose
+Provide evidence-based, quick coping techniques that users can practice anytime to manage stress, anxiety, and emotional distress.
+
+### User Benefit
+- Immediate stress relief
+- Portable coping skills
+- No special equipment needed
+- Builds long-term resilience
+
+### Functional Requirements
+
+#### FR5.1: Breathing Exercises
+
+**Exercise Types:**
+
+1. **Box Breathing (4-4-4-4)**
+   - Inhale: 4 seconds
+   - Hold: 4 seconds
+   - Exhale: 4 seconds
+   - Hold: 4 seconds
+   - Repeat: 4-5 cycles
+
+2. **4-7-8 Breathing**
+   - Inhale: 4 seconds
+   - Hold: 7 seconds
+   - Exhale: 8 seconds
+   - Repeat: 3-4 cycles
+
+3. **Deep Belly Breathing**
+   - Inhale deeply through nose (5 seconds)
+   - Exhale slowly through mouth (7 seconds)
+   - Repeat: 5-10 cycles
+
+**Features:**
+- Visual guide (animated circle expanding/contracting)
+- Audio cues (optional)
+- Haptic feedback (phone vibrates for inhale/exhale)
+- Duration: 3-5 minutes
+- Background: Calming colors and sounds
+
+#### FR5.2: 5-Minute Grounding Techniques
+
+**5-4-3-2-1 Grounding:**
+- **5 things you can see:** Look around and name them
+- **4 things you can touch:** Feel textures around you
+- **3 things you can hear:** Listen carefully
+- **2 things you can smell:** Notice scents
+- **1 thing you can taste:** Focus on taste in your mouth
+
+**Purpose:** Bring user back to present moment during anxiety/panic
+
+**Features:**
+- Step-by-step guided prompts
+- User can type or speak responses
+- Calming background music
+- Duration: 5 minutes
+
+#### FR5.3: Journaling Prompts
+
+**Purpose:** Process emotions through structured reflection
+
+**Prompt Categories:**
+
+**1. Stress Processing:**
+- "What is bothering me most today?"
+- "What can I control right now?"
+- "What is outside my control?"
+
+**2. Gratitude (for balance):**
+- "What is one small thing that went well today?"
+- "Who or what am I grateful for right now?"
+
+**3. Self-Compassion:**
+- "What would I say to a friend feeling this way?"
+- "How can I be kind to myself today?"
+
+**4. Future-Focused:**
+- "What is one small step I can take tomorrow?"
+- "What do I need most right now?"
+
+**Features:**
+- Private journal entries
+- Optional sharing in peer support (anonymously)
+- Saved for personal reflection
+- Search and filter by date/topic
+
+#### FR5.4: Progressive Muscle Relaxation (PMR)
+
+**Technique:**
+- Tense and relax muscle groups sequentially
+- Reduces physical tension from stress
+
+**Guided Sequence:**
+1. Hands and arms
+2. Face and neck
+3. Shoulders and back
+4. Chest and abdomen
+5. Legs and feet
+
+**Duration:** 10 minutes
+
+**Features:**
+- Audio-guided instructions
+- Visual cues showing which muscle group
+- Can be done sitting or lying down
+
+### User Flow
+
+```mermaid
+graph TD
+    A[Open Mental Health Tools] --> B[Choose Tool Category]
+    B --> C[Breathing Exercises]
+    B --> D[Grounding Techniques]
+    B --> E[Journaling Prompts]
+    B --> F[Progressive Muscle Relaxation]
+    C --> G[Select Exercise Type]
+    G --> H[Start Guided Exercise]
+    H --> I[Complete Exercise]
+    I --> J[Rate Helpfulness]
+    J --> K[Save Progress]
+```
+
+### Usage Tracking
+- Track which tools used most frequently
+- Measure effectiveness (user ratings)
+- Suggest tools based on mood patterns
+
+### Accessibility
+- Audio descriptions for visually impaired
+- Text alternatives for audio content
+- Adjustable font sizes and contrast
+
+---
+
+## Feature 6: Anonymous Peer Support Community
+
+### Purpose
+Reduce isolation by connecting users with others facing similar challenges in a safe, moderated, anonymous environment.
+
+### User Benefit
+- Feel less alone
+- Share experiences without judgment
+- Learn from others' coping strategies
+- Build sense of community
+
+### Functional Requirements
+
+#### FR6.1: Anonymous Identity
+
+**User Anonymity:**
+- No real names required
+- Auto-generated anonymous usernames (e.g., "BlueButterfly42")
+- Optional avatar selection (non-identifying)
+- No profile photos
+
+**Privacy Protection:**
+- IP addresses not visible
+- Location not shared
+- No private messaging (to prevent harassment)
+
+#### FR6.2: Discussion Topics
+
+**Pre-Defined Topic Rooms:**
+
+1. **Early-Career Stress**
+   - First job challenges
+   - Workplace pressure
+   - Career uncertainty
+
+2. **Family Expectations**
+   - Parental pressure
+   - Cultural expectations
+   - Comparison struggles
+
+3. **Burnout & Exhaustion**
+   - Chronic fatigue
+   - Work-life balance
+   - Recovery strategies
+
+4. **Anxiety & Overwhelm**
+   - Managing anxiety
+   - Panic attacks
+   - Coping techniques
+
+5. **Hope & Progress**
+   - Success stories
+   - Small wins
+   - Encouragement
+
+#### FR6.3: Content Moderation
+
+**Automated Moderation:**
+- Filter harmful language (profanity, slurs, triggering content)
+- Detect crisis language and flag for human review
+- Block spam and promotional content
+
+**Human Moderation:**
+- Trained moderators review flagged content
+- Remove harmful posts within 1 hour
+- Ban users violating community guidelines
+
+**Community Guidelines:**
+✅ **Allowed:**
+- Sharing personal experiences
+- Offering support and empathy
+- Asking for advice
+- Celebrating progress
+
+❌ **Not Allowed:**
+- Graphic descriptions of self-harm or suicide methods
+- Harassment or bullying
+- Medical or diagnostic advice
+- Promotion of products/services
+- Identifying information
+
+#### FR6.4: Posting and Interaction
+
+**Post Types:**
+1. **Text Posts:** Share experiences (max 1000 characters)
+2. **Polls:** Ask community questions
+3. **Gratitude Posts:** Share small wins
+
+**Interactions:**
+- **Upvote/Support:** Show support for posts
+- **Reply:** Comment on posts (max 500 characters)
+- **Report:** Flag inappropriate content
+
+**No Private Messaging:** Prevents harassment and maintains safety
+
+#### FR6.5: Safety Features
+
+**Trigger Warnings:**
+- Users can tag posts with trigger warnings
+- Others can filter out triggering content
+
+**Crisis Detection:**
+- Posts indicating suicidal ideation flagged immediately
+- Auto-response with crisis resources
+- Human moderator notified
+
+**Blocking:**
+- Users can block others from seeing their posts
+- Blocked users cannot interact
+
+### User Flow
+
+```mermaid
+graph TD
+    A[Open Peer Support] --> B[Choose Topic Room]
+    B --> C{Read Posts or Create?}
+    C -->|Read| D[Browse Posts]
+    C -->|Create| E[Write Post]
+    D --> F[Upvote/Reply]
+    E --> G{Contains Crisis Keywords?}
+    G -->|Yes| H[Show Crisis Resources]
+    G -->|No| I[Post Published]
+    H --> J{User Still Wants to Post?}
+    J -->|Yes| I
+    J -->|No| K[Cancel Post]
+    I --> L[Moderation Queue]
+    L --> M{Approved?}
+    M -->|Yes| N[Visible to Community]
+    M -->|No| O[Removed, User Notified]
+```
+
+### Moderation Workflow
+
+```mermaid
+graph TD
+    A[Post Submitted] --> B{Auto-Filter Check}
+    B -->|Pass| C[Published Immediately]
+    B -->|Flagged| D[Human Review Queue]
+    C --> E[Community Visible]
+    D --> F{Moderator Decision}
+    F -->|Approve| E
+    F -->|Remove| G[Post Removed]
+    F -->|Ban User| H[User Banned]
+    E --> I{User Reports?}
+    I -->|Yes| D
+    I -->|No| J[Remains Published]
+```
+
+### Privacy Considerations
+- No data linking posts to real identities
+- User can delete posts anytime
+- Deleted posts removed from all servers
+
+---
+
+## Feature 7: Emergency Support Button 🚨
+
+### Purpose
+Provide immediate, one-tap access to crisis resources when users are in severe distress or experiencing suicidal ideation.
+
+### User Benefit
+- Instant access to professional help
+- No navigation required
+- Reduces barriers during crisis
+
+> [!CAUTION]
+> **Life-Saving Feature:** This feature must be prominently accessible, reliable, and immediately responsive.
+
+### Functional Requirements
+
+#### FR7.1: Button Placement
+
+**Visibility:**
+- **Home Screen:** Prominent red button labeled "Need Help Now?"
+- **All Screens:** Floating action button (FAB) in bottom-right corner
+- **Chat Feature:** Persistent button during AI conversations
+
+**Design:**
+- High contrast (red background, white text)
+- Large enough to tap easily (minimum 60x60 pixels)
+- Icon: 🚨 or ❤️‍🩹
+
+#### FR7.2: Emergency Resources Screen
+
+**When Button Tapped:**
+
+Immediate display of:
+
+**1. Crisis Helplines (India):**
+| Organization | Phone Number | Availability |
+|--------------|--------------|--------------|
+| **AASRA** | 91-22-27546669 | 24/7 |
+| **Vandrevala Foundation** | 1860-2662-345 | 24/7 |
+| **iCall** | 91-22-25521111 | Mon-Sat, 8AM-10PM |
+| **Snehi** | 91-22-27546669 | 24/7 |
+| **COOJ Mental Health Foundation** | +91-833-231-1555 | 24/7 |
+
+**2. One-Tap Call:**
+- Tap helpline to call directly
+- No need to copy/paste number
+
+**3. Trusted Contact:**
+- If configured, option to call/text pre-selected trusted person
+- Message template: "I'm not okay. Can you talk?"
+
+**4. Safety Plan:**
+- Quick access to user's personalized safety plan
+- Coping strategies
+- Reasons to live
+- Professional contacts
+
+#### FR7.3: Trusted Contact Configuration
+
+**Setup:**
+- User can add 1-3 trusted contacts
+- Name, phone number, relationship
+- Optional: Pre-written message templates
+
+**Privacy:**
+- User controls when to contact
+- No automatic notifications (user autonomy)
+
+#### FR7.4: Safety Plan Creation
+
+**Guided Safety Plan:**
+
+1. **Warning Signs:** "What tells you that you're in crisis?"
+   - Example: "I start thinking everyone would be better off without me"
+
+2. **Coping Strategies:** "What helps you feel better?"
+   - Example: "Listening to music, talking to my friend, going for a walk"
+
+3. **Reasons to Live:** "What are your reasons to keep going?"
+   - Example: "My family, my dog, my dreams"
+
+4. **Professional Contacts:** "Who can you call for professional help?"
+   - Therapist name and number
+   - Crisis helplines
+
+5. **Safe Environment:** "How can you make your environment safer?"
+   - Example: "Remove harmful objects, stay with someone"
+
+**Storage:**
+- Saved locally and encrypted
+- Accessible offline
+- Can be updated anytime
+
+### User Flow
+
+```mermaid
+graph TD
+    A[User Taps Emergency Button] --> B[Emergency Resources Screen]
+    B --> C{User Choice}
+    C -->|Call Helpline| D[Direct Call to Selected Helpline]
+    C -->|Contact Trusted Person| E[Call/Text Trusted Contact]
+    C -->|View Safety Plan| F[Display Safety Plan]
+    C -->|Create Safety Plan| G[Guided Safety Plan Creation]
+    D --> H[Log Crisis Event]
+    E --> H
+    F --> H
+    G --> I[Save Safety Plan]
+    I --> H
+    H --> J[Follow-Up Check-In Next Day]
+```
+
+### Follow-Up Protocol
+
+**Next Day Check-In:**
+- Push notification: "How are you feeling today?"
+- Mood check-in
+- Suggest professional help if still in crisis
+- Offer to connect with therapist
+
+### Privacy Considerations
+- Crisis events logged for user's own tracking
+- Never shared without consent
+- User can delete crisis logs
+
+### Safety Mechanisms
+- Button always accessible (cannot be disabled)
+- Works offline (cached helpline numbers)
+- No judgment or barriers to access
+
+---
+
+## Feature 8: Personalized Self-Care Plan
+
+### Purpose
+Generate customized self-care recommendations based on user's mood trends, workload stress, and family pressure patterns.
+
+### User Benefit
+- Tailored advice (not generic)
+- Actionable steps
+- Adapts to changing needs
+
+### Functional Requirements
+
+#### FR8.1: Data Inputs for Personalization
+
+**Sources:**
+1. Daily mood check-in trends
+2. Workload stress levels
+3. Family pressure assessments
+4. Feature usage patterns (which tools used most)
+5. Crisis events (if any)
+
+#### FR8.2: Self-Care Recommendation Engine
+
+**Algorithm Logic:**
+
+**If High Workload Stress:**
+- Suggest: "Take a mental health day"
+- Suggest: "Set work boundaries (no emails after 7 PM)"
+- Suggest: "Talk to manager about workload"
+- Suggest: "Use breathing exercises during work breaks"
+
+**If High Family Pressure:**
+- Suggest: "Practice boundary-setting with family"
+- Suggest: "Journal about your authentic desires"
+- Suggest: "Connect with peer support on family expectations"
+- Suggest: "Limit family gatherings if needed"
+
+**If Both High:**
+- Suggest: "Consider professional counseling"
+- Suggest: "Prioritize one area at a time"
+- Suggest: "Build a support network outside work and family"
+
+**If Improving Trends:**
+- Celebrate: "Your stress has decreased 20% this month!"
+- Encourage: "Keep using the tools that are working"
+
+#### FR8.3: Self-Care Plan Components
+
+**Weekly Plan Includes:**
+
+1. **Priority Action:** Most important step this week
+   - Example: "Schedule a therapy session"
+
+2. **Daily Micro-Actions:** Small, achievable tasks
+   - Example: "Take 5-minute breathing break at lunch"
+
+3. **Social Connection:** Reduce isolation
+   - Example: "Reach out to one friend this week"
+
+4. **Physical Self-Care:** Body-mind connection
+   - Example: "Go for a 20-minute walk 3 times this week"
+
+5. **Emotional Processing:** Safe expression
+   - Example: "Journal for 10 minutes before bed"
+
+#### FR8.4: Progress Tracking
+
+**Track Completion:**
+- User checks off completed actions
+- Visual progress bar
+- Weekly summary of completion rate
+
+**Adaptive Adjustments:**
+- If user consistently skips certain actions, suggest alternatives
+- If user completes all actions, increase challenge slightly
+
+### User Flow
+
+```mermaid
+graph TD
+    A[App Analyzes User Data] --> B[Generate Personalized Plan]
+    B --> C[Display Weekly Self-Care Plan]
+    C --> D[User Reviews Recommendations]
+    D --> E{Accept Plan?}
+    E -->|Yes| F[Set Reminders]
+    E -->|Modify| G[Customize Actions]
+    G --> F
+    F --> H[Daily Reminders for Actions]
+    H --> I[User Completes Actions]
+    I --> J[Check Off Completed]
+    J --> K[Weekly Review]
+    K --> L[Generate Next Week's Plan]
+```
+
+### Example Self-Care Plans
+
+**For Priya (High Workload Stress):**
+> **This Week's Self-Care Plan**
+> 
+> **Priority Action:** Talk to your manager about workload distribution
+> 
+> **Daily Actions:**
+> - ✅ Use box breathing during lunch break
+> - ✅ Stop working by 8 PM (3 days this week)
+> - ✅ Take a 10-minute walk after work
+> 
+> **Social Connection:** Call a friend who makes you laugh
+> 
+> **Emotional Processing:** Journal about one thing you're proud of each day
+
+**For Arjun (High Family Pressure):**
+> **This Week's Self-Care Plan**
+> 
+> **Priority Action:** Write down YOUR career goals (not family's expectations)
+> 
+> **Daily Actions:**
+> - ✅ Practice saying "I need to think about that" when family pressures you
+> - ✅ Spend 15 minutes on a hobby you enjoy
+> - ✅ Read peer stories about family pressure
+> 
+> **Social Connection:** Connect with peer support community
+> 
+> **Emotional Processing:** Journal about what YOU want from life
+
+### Privacy Considerations
+- Self-care plans stored locally
+- User can share progress (optional)
+- No external access
+
+---
+
+## Feature 9: Progress & Hope Tracker 🌱
+
+### Purpose
+Visualize emotional improvement over time, celebrate small wins, and build hope through tangible evidence of progress.
+
+### User Benefit
+- See that things are getting better (even slowly)
+- Motivation to continue using coping tools
+- Combat hopelessness with data-driven hope
+
+### Functional Requirements
+
+#### FR9.1: Metrics Tracked
+
+**Emotional Metrics:**
+1. **Average Mood:** Weekly/monthly average mood score
+2. **Stress Levels:** Trend of stress over time
+3. **Good Days:** Count of days with positive mood
+4. **Crisis-Free Days:** Days without severe distress
+
+**Behavioral Metrics:**
+1. **Tool Usage:** Frequency of breathing exercises, journaling, etc.
+2. **Self-Care Completion:** % of self-care plan completed
+3. **Community Engagement:** Participation in peer support
+
+**Workload Metrics:**
+1. **Average Weekly Hours:** Trend over time
+2. **Overtime Reduction:** Decrease in overtime hours
+3. **Weekend Work:** Frequency of weekend work
+
+**Family Pressure Metrics:**
+1. **Family Stress Score:** Trend over time
+2. **Guilt Levels:** Reduction in guilt feelings
+
+#### FR9.2: Visualizations
+
+**1. Mood Trend Line Graph:**
+- X-axis: Time (weeks/months)
+- Y-axis: Average mood score
+- Color-coded: Green (improving), Yellow (stable), Red (declining)
+
+**2. Stress Reduction Chart:**
+- Before/after comparison
+- Percentage improvement
+
+**3. Small Wins Calendar:**
+- Calendar view with positive days highlighted
+- Visual representation of progress
+
+**4. Tool Effectiveness:**
+- Which tools correlate with mood improvement
+- Personalized recommendations based on data
+
+#### FR9.3: Milestone Celebrations
+
+**Automated Celebrations:**
+
+**7 Days of Check-Ins:**
+> 🎉 **Milestone Unlocked!**
+> 
+> You've completed 7 days of mood check-ins. Building self-awareness is the first step to feeling better. Keep going!
+
+**First Month:**
+> 🌟 **One Month Strong!**
+> 
+> You've been using the app for a month. Your average stress has decreased by 15%. You're making progress!
+
+**Stress Reduction:**
+> 💪 **Progress Alert!**
+> 
+> Your stress levels have decreased by 25% over the past month. The tools you're using are working. Keep it up!
+
+**Crisis-Free Month:**
+> 🌈 **Hope Milestone!**
+> 
+> You've gone a full month without a crisis event. That's incredible progress. You're building resilience.
+
+#### FR9.4: Hope-Building Messages
+
+**Weekly Summary:**
+> **This Week's Wins:**
+> - You completed 5 mood check-ins
+> - Your average mood improved from 😐 to 🙂
+> - You used breathing exercises 3 times
+> - You connected with peer support
+> 
+> **Small progress is still progress. You're doing great.**
+
+### User Flow
+
+```mermaid
+graph TD
+    A[Open Progress Tracker] --> B[View Dashboard]
+    B --> C[Mood Trend Graph]
+    B --> D[Stress Reduction Chart]
+    B --> E[Small Wins Calendar]
+    B --> F[Milestone Achievements]
+    C --> G[Detailed Insights]
+    D --> G
+    E --> G
+    F --> H[Share Progress (Optional)]
+    G --> I[Personalized Encouragement]
+```
+
+### Insights Provided
+
+**Example Insights:**
+- "Your mood improves on days you use breathing exercises"
+- "Your stress is lower when you work fewer than 50 hours/week"
+- "Family pressure affects your mood more on weekends"
+- "You've had 12 good days this month—that's 40% of the month!"
+
+### Privacy Considerations
+- All data stored locally
+- User can export data for personal use
+- Optional: Share anonymized progress in peer support for encouragement
+
+### Safety Mechanisms
+- If progress stagnates or declines, suggest professional help
+- Avoid toxic positivity ("Just think positive!")
+- Acknowledge setbacks as normal
+
+---
+
+## Summary: Feature Integration
+
+All 9 features work together to create a comprehensive support system:
+
+```mermaid
+graph TD
+    A[Daily Mood Check-In] --> B[Early Detection]
+    C[Workload Tracker] --> B
+    D[Family Pressure Assessment] --> B
+    B --> E{Distress Level?}
+    E -->|Low| F[Encouragement]
+    E -->|Medium| G[Suggest Tools]
+    E -->|High| H[Crisis Intervention]
+    G --> I[AI Chat]
+    G --> J[Mental Health Tools]
+    G --> K[Peer Support]
+    H --> L[Emergency Button]
+    L --> M[Professional Help]
+    F --> N[Progress Tracker]
+    G --> N
+    I --> N
+    J --> N
+    K --> N
+    N --> O[Personalized Self-Care Plan]
+    O --> A
+```
+
+**The Cycle:**
+1. **Detect** distress early (Features 1-3)
+2. **Support** immediately (Features 4-6)
+3. **Intervene** in crisis (Feature 7)
+4. **Guide** with personalized care (Feature 8)
+5. **Motivate** with progress (Feature 9)
+6. **Repeat** for continuous support
+
+---
+
+> [!NOTE]
+> **Next Steps:** These feature specifications will inform app architecture design, user interface mockups, and technical implementation planning.

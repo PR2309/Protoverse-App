@@ -1,0 +1,635 @@
+# User Journey & App Flow
+## Early Emotional Distress Detection & Support App
+
+---
+
+## 1. Overview
+
+This document maps the complete user journey from first discovery to ongoing engagement, including onboarding, daily usage, crisis scenarios, and feature navigation.
+
+---
+
+## 2. User Onboarding Journey
+
+### 2.1 Discovery & Download
+
+**How Users Find the App:**
+- App store search ("mental health support," "stress relief," "burnout help")
+- Social media campaigns targeting early-career professionals
+- Workplace wellness program recommendations
+- Word-of-mouth from peers
+- Mental health professional recommendations
+
+### 2.2 First Launch Experience
+
+```mermaid
+graph TD
+    A[App Launch] --> B[Welcome Screen]
+    B --> C[Value Proposition]
+    C --> D["This app helps you:<br/>✓ Detect stress early<br/>✓ Find immediate support<br/>✓ Connect with peers<br/>✓ Build resilience"]
+    D --> E[Important Disclaimer]
+    E --> F["⚠️ This app supports well-being<br/>but does NOT diagnose or treat<br/>mental health conditions"]
+    F --> G{User Accepts}
+    G -->|Yes| H[Privacy & Permissions]
+    G -->|No| I[Exit App]
+    H --> J[Request Notifications]
+    J --> K[Initial Assessment]
+```
+
+### 2.3 Initial Assessment (Personalization)
+
+**Purpose:** Tailor app experience to user's primary stressors
+
+**Questions:**
+
+1. **"What brings you here today?"** (Select all that apply)
+   - ☐ Work stress and burnout
+   - ☐ Family pressure and expectations
+   - ☐ Anxiety and overwhelm
+   - ☐ Feeling isolated
+   - ☐ Just exploring mental health support
+
+2. **"How are you feeling right now?"**
+   - 😊 Good
+   - 😐 Okay
+   - 😞 Not great
+   - 😢 Really struggling
+
+3. **"What would help you most?"**
+   - Quick stress-relief tools
+   - Someone to talk to
+   - Understanding my patterns
+   - Connecting with others
+
+4. **"Have you experienced thoughts of self-harm or suicide recently?"**
+   - No
+   - Sometimes
+   - Yes, frequently
+
+   > [!CAUTION]
+   > If user selects "Yes, frequently" → Immediate crisis intervention screen
+
+**Based on Responses:**
+- Customize home screen feature priorities
+- Set default notification preferences
+- Suggest first actions
+
+### 2.4 Onboarding Completion
+
+```mermaid
+graph TD
+    A[Assessment Complete] --> B{Crisis Detected?}
+    B -->|Yes| C[Emergency Resources Screen]
+    B -->|No| D[Personalized Welcome]
+    C --> E[Encourage Professional Help]
+    E --> F[Optional: Continue to App]
+    D --> G[Quick Tutorial]
+    G --> H["Swipe through 3 screens:<br/>1. Daily Check-In<br/>2. Emergency Button<br/>3. Explore Features"]
+    H --> I[Set Daily Check-In Time]
+    I --> J[Home Screen]
+    F --> J
+```
+
+---
+
+## 3. Daily Usage Scenarios
+
+### 3.1 Routine Day (Low Stress)
+
+**Priya's Morning:**
+
+```mermaid
+graph LR
+    A[Wake Up] --> B[Check Phone]
+    B --> C[See Daily Check-In Notification]
+    C --> D[Open App]
+    D --> E[Complete Mood Check-In<br/>😊 Good, Stress: 2/5]
+    E --> F[Positive Affirmation Shown]
+    F --> G[Close App]
+    G --> H[Continue Day]
+```
+
+**Evening:**
+- Brief review of progress tracker
+- Read one peer support post
+- Close app
+
+**Time Investment:** 3-5 minutes total
+
+---
+
+### 3.2 Stressful Day (Medium Stress)
+
+**Priya's Afternoon:**
+
+```mermaid
+graph TD
+    A[Stressful Meeting] --> B[Feeling Anxious]
+    B --> C[Open App]
+    C --> D[Navigate to Mental Health Tools]
+    D --> E[Select Box Breathing]
+    E --> F[Complete 5-Minute Exercise]
+    F --> G[Feel Calmer]
+    G --> H{Want More Support?}
+    H -->|Yes| I[Open AI Chat]
+    H -->|No| J[Return to Work]
+    I --> K[Chat About Stress]
+    K --> L[AI Validates Feelings]
+    L --> M[Suggests Journaling]
+    M --> N{Journal Now?}
+    N -->|Yes| O[Write Journal Entry]
+    N -->|No| P[Save for Later]
+    O --> Q[Feel Heard]
+    P --> Q
+    Q --> J
+```
+
+**Evening Check-In:**
+- Mood: 😐 Okay, Stress: 4/5
+- Log workload: 10-hour day
+- App suggests self-care for tomorrow
+
+**Time Investment:** 15-20 minutes total
+
+---
+
+### 3.3 Crisis Day (High Stress/Suicidal Ideation)
+
+**Neha's Late Night:**
+
+```mermaid
+graph TD
+    A[Overwhelming Thoughts] --> B["I can't do this anymore"]
+    B --> C[Open App]
+    C --> D[Tap Emergency Button 🚨]
+    D --> E[Emergency Resources Screen]
+    E --> F{User Choice}
+    F -->|Call Helpline| G[Tap AASRA Number]
+    F -->|Trusted Contact| H[Call Friend]
+    F -->|Safety Plan| I[View Safety Plan]
+    G --> J[Connected to Counselor]
+    H --> K[Friend Provides Support]
+    I --> L[Review Coping Strategies]
+    J --> M[Professional Guidance]
+    K --> M
+    L --> N{Still in Crisis?}
+    N -->|Yes| F
+    N -->|No| O[Create Safety Plan]
+    M --> P[Follow-Up Scheduled]
+    O --> P
+    P --> Q[Next Day Check-In]
+```
+
+**Next Day:**
+- App sends: "How are you feeling today?"
+- Suggests professional counseling resources
+- Offers to help find therapist
+
+**Time Investment:** Variable (crisis-dependent)
+
+---
+
+## 4. Feature Navigation Flow
+
+### 4.1 App Home Screen
+
+**Layout:**
+
+```
+┌─────────────────────────────────────┐
+│  Good Evening, User 🌙              │
+│                                     │
+│  ┌───────────────────────────────┐ │
+│  │  How are you feeling today?   │ │
+│  │  [Tap to Check In]            │ │
+│  └───────────────────────────────┘ │
+│                                     │
+│  🚨 [Need Help Now?]                │
+│                                     │
+│  Your Progress This Week 📊         │
+│  ▓▓▓▓▓░░░░░ 5/7 check-ins          │
+│                                     │
+│  Quick Actions:                     │
+│  [💬 Chat] [🧘 Breathe] [👥 Community] │
+│                                     │
+│  ═══════════════════════════════   │
+│  [Home] [Tools] [Progress] [More]  │
+└─────────────────────────────────────┘
+```
+
+### 4.2 Bottom Navigation
+
+```mermaid
+graph TD
+    A[Bottom Nav Bar] --> B[Home 🏠]
+    A --> C[Tools 🧰]
+    A --> D[Progress 📈]
+    A --> E[More ⋯]
+    
+    B --> B1[Daily Check-In]
+    B --> B2[Quick Actions]
+    B --> B3[Emergency Button]
+    
+    C --> C1[Breathing Exercises]
+    C --> C2[Grounding Techniques]
+    C --> C3[Journaling Prompts]
+    C --> C4[Progressive Muscle Relaxation]
+    
+    D --> D1[Mood Trends]
+    D --> D2[Stress Reduction]
+    D --> D3[Milestones]
+    D --> D4[Insights]
+    
+    E --> E1[Workload Tracker]
+    E --> E2[Family Pressure Assessment]
+    E --> E3[AI Chat]
+    E --> E4[Peer Support]
+    E --> E5[Self-Care Plan]
+    E --> E6[Settings]
+```
+
+### 4.3 Complete App Sitemap
+
+```mermaid
+graph TD
+    A[App Launch] --> B{Logged In?}
+    B -->|No| C[Onboarding]
+    B -->|Yes| D[Home Screen]
+    
+    C --> C1[Welcome]
+    C --> C2[Disclaimer]
+    C --> C3[Initial Assessment]
+    C --> C4[Tutorial]
+    C --> D
+    
+    D --> E[Daily Check-In]
+    D --> F[Emergency Button]
+    D --> G[Quick Actions]
+    
+    E --> E1[Mood Selection]
+    E1 --> E2[Stress Level]
+    E2 --> E3[Work Impact]
+    E3 --> E4[Family Impact]
+    E4 --> E5[Optional Note]
+    E5 --> E6[Submit & Analysis]
+    
+    F --> F1[Crisis Helplines]
+    F --> F2[Trusted Contacts]
+    F --> F3[Safety Plan]
+    
+    G --> G1[AI Chat]
+    G --> G2[Breathing Exercise]
+    G --> G3[Peer Support]
+    
+    D --> H[Tools Tab]
+    H --> H1[Breathing Exercises]
+    H --> H2[Grounding Techniques]
+    H --> H3[Journaling]
+    H --> H4[PMR]
+    
+    D --> I[Progress Tab]
+    I --> I1[Mood Trends]
+    I --> I2[Stress Charts]
+    I --> I3[Milestones]
+    I --> I4[Insights]
+    
+    D --> J[More Tab]
+    J --> J1[Workload Tracker]
+    J --> J2[Family Assessment]
+    J --> J3[AI Chat]
+    J --> J4[Peer Support]
+    J --> J5[Self-Care Plan]
+    J --> J6[Settings]
+    
+    J1 --> J1A[Log Hours]
+    J1 --> J1B[View Trends]
+    J1 --> J1C[Burnout Alerts]
+    
+    J2 --> J2A[Weekly Assessment]
+    J2 --> J2B[Journaling]
+    J2 --> J2C[Trend Analysis]
+    
+    J3 --> J3A[Chat Interface]
+    J3 --> J3B[Crisis Detection]
+    J3 --> J3C[Coping Suggestions]
+    
+    J4 --> J4A[Topic Rooms]
+    J4 --> J4B[Create Post]
+    J4 --> J4C[Read & Reply]
+    
+    J5 --> J5A[View Plan]
+    J5 --> J5B[Track Completion]
+    J5 --> J5C[Customize Actions]
+    
+    J6 --> J6A[Notifications]
+    J6 --> J6B[Privacy]
+    J6 --> J6C[Trusted Contacts]
+    J6 --> J6D[Account]
+```
+
+---
+
+## 5. Detailed User Journeys by Persona
+
+### 5.1 Priya's Journey (Workload Stress)
+
+**Week 1: Discovery**
+
+```mermaid
+graph LR
+    A[Friend Recommends App] --> B[Downloads App]
+    B --> C[Onboarding: Selects Work Stress]
+    C --> D[First Mood Check-In: 😐 Stress 4/5]
+    D --> E[Explores Workload Tracker]
+    E --> F[Logs 65-Hour Week]
+    F --> G[Burnout Alert Triggered]
+    G --> H[Tries Breathing Exercise]
+    H --> I[Feels Slightly Better]
+```
+
+**Week 2-3: Building Habit**
+- Daily check-ins become routine
+- Uses breathing exercises during work breaks
+- Reads peer support posts about burnout
+- Starts seeing patterns: stress highest on Mondays
+
+**Week 4: Progress**
+- Mood improves from 😐 to 🙂
+- Stress reduces from 4/5 to 3/5
+- App celebrates: "Your stress decreased 25%!"
+- Priya feels validated and hopeful
+
+**Month 2: Sustained Use**
+- Uses workload data to talk to manager
+- Reduces hours to 50/week
+- Continues daily check-ins
+- Becomes active in peer support community
+
+---
+
+### 5.2 Arjun's Journey (Family Pressure)
+
+**Week 1: Hesitant Start**
+
+```mermaid
+graph LR
+    A[Searches: Family Pressure Help] --> B[Finds App]
+    B --> C[Onboarding: Selects Family Pressure]
+    C --> D[First Assessment: High Pressure]
+    D --> E[Reads Validation Message]
+    E --> F["Finally, someone understands"]
+    F --> G[Opens Anonymous Journal]
+    G --> H[Writes Suppressed Anger]
+    H --> I[Feels Relief]
+```
+
+**Week 2-4: Processing Emotions**
+- Weekly family assessments
+- Regular journaling (3-4 times/week)
+- Reads peer stories: "I'm not alone"
+- AI chat validates his feelings
+
+**Month 2: Boundary Building**
+- Self-care plan suggests boundary-setting
+- Practices saying "I need to think about that"
+- Family pressure score decreases
+- Starts feeling more confident in choices
+
+**Month 3: Transformation**
+- Shares anonymous post in peer support
+- Receives supportive responses
+- Guilt reduces significantly
+- Begins to separate his desires from family expectations
+
+---
+
+### 5.3 Neha's Journey (Crisis → Recovery)
+
+**Day 1: Crisis**
+
+```mermaid
+graph TD
+    A[Panic Attack at Work] --> B[Searches: Suicide Helpline]
+    B --> C[Finds App]
+    C --> D[Downloads Immediately]
+    D --> E[Onboarding: Selects All Stressors]
+    E --> F[Assessment: Extremely Struggling]
+    F --> G[Crisis Screen Appears]
+    G --> H[Calls AASRA Helpline]
+    H --> I[Talks to Counselor]
+    I --> J[Creates Safety Plan in App]
+    J --> K[Adds Trusted Contact: Best Friend]
+```
+
+**Week 1: Intensive Support**
+- Daily check-ins: Mood still low (😞)
+- Uses emergency button 2 more times
+- AI chat provides non-judgmental listening
+- Starts therapy (app helped find therapist)
+
+**Week 2-4: Gradual Improvement**
+- Mood slowly improves: 😞 → 😐
+- Uses breathing exercises before meetings
+- Workload tracker shows 80+ hour weeks
+- Talks to manager about reducing hours
+
+**Month 2-3: Recovery**
+- Mood: 😐 → 🙂
+- Stress: 5/5 → 3/5
+- Working hours: 80 → 55/week
+- Continues therapy
+- App celebrates: "30 crisis-free days!"
+
+**Month 6: Sustained Well-Being**
+- Mood mostly 🙂-😊
+- Uses app for maintenance (3-4x/week)
+- Active in peer support: Helps others
+- Reflects: "This app saved my life"
+
+---
+
+## 6. Crisis Intervention Flow (Detailed)
+
+### 6.1 Crisis Detection Points
+
+**Automatic Detection:**
+
+```mermaid
+graph TD
+    A[User Interaction] --> B{Crisis Indicators?}
+    
+    B -->|Mood Check-In| C[😢 + Stress 5/5 + 3+ days]
+    B -->|AI Chat| D[Keywords: suicide, die, end it]
+    B -->|Journal Entry| E[Self-harm language detected]
+    B -->|Peer Support Post| F[Crisis content flagged]
+    B -->|Manual| G[User Taps Emergency Button]
+    
+    C --> H[Trigger Crisis Protocol]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    
+    H --> I[Emergency Resources Screen]
+```
+
+### 6.2 Crisis Intervention Screen
+
+**Immediate Display:**
+
+```
+┌─────────────────────────────────────┐
+│  🚨 You Don't Have to Face This    │
+│     Alone                           │
+│                                     │
+│  We're concerned about you. Please  │
+│  reach out to someone who can help: │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  📞 Crisis Helplines (24/7)         │
+│                                     │
+│  [Call AASRA]                       │
+│  91-22-27546669                     │
+│                                     │
+│  [Call Vandrevala Foundation]       │
+│  1860-2662-345                      │
+│                                     │
+│  [Call iCall]                       │
+│  91-22-25521111                     │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  👤 Your Trusted Contact            │
+│  [Call Sarah (Best Friend)]         │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  📋 [View My Safety Plan]           │
+│                                     │
+│  ═══════════════════════════════   │
+│                                     │
+│  [I'm Safe Now] [Create Safety Plan]│
+└─────────────────────────────────────┘
+```
+
+### 6.3 Post-Crisis Follow-Up
+
+```mermaid
+graph TD
+    A[Crisis Event Logged] --> B[Wait 24 Hours]
+    B --> C[Send Check-In Notification]
+    C --> D["How are you feeling today?"]
+    D --> E{User Response}
+    E -->|Still in Crisis| F[Show Resources Again]
+    E -->|Improving| G[Encourage Professional Help]
+    E -->|No Response| H[Send Reminder After 12 Hours]
+    F --> I[Suggest Therapy Finder]
+    G --> I
+    H --> J{Response?}
+    J -->|Yes| E
+    J -->|No After 48hrs| K[Log for Concern]
+```
+
+---
+
+## 7. Notification Strategy
+
+### 7.1 Notification Types
+
+| Type | Frequency | Example | Dismissible |
+|------|-----------|---------|-------------|
+| **Daily Check-In** | Once daily (user-set time) | "How are you feeling today?" | Yes |
+| **Burnout Alert** | When triggered | "You've worked 60+ hours for 3 weeks" | No |
+| **Self-Care Reminder** | 2-3x/week | "Time for your breathing exercise" | Yes |
+| **Milestone Celebration** | When achieved | "🎉 7 days of check-ins!" | No |
+| **Crisis Follow-Up** | 24hrs after crisis | "Checking in on you. How are you?" | No |
+| **Peer Support Reply** | When someone replies | "Someone responded to your post" | Yes |
+
+### 7.2 Notification Timing
+
+**Smart Scheduling:**
+- Avoid late night (11 PM - 7 AM) unless crisis
+- Respect "Do Not Disturb" settings
+- Adapt to user's engagement patterns
+
+---
+
+## 8. Accessibility Considerations
+
+### 8.1 Visual Accessibility
+- High contrast mode
+- Adjustable font sizes (150%, 200%)
+- Screen reader compatibility
+- Color-blind friendly palette
+
+### 8.2 Motor Accessibility
+- Large tap targets (minimum 44x44 pixels)
+- Voice input for journaling
+- Swipe gestures optional (button alternatives)
+
+### 8.3 Cognitive Accessibility
+- Simple, clear language
+- Consistent navigation
+- Minimal steps to critical features
+- Visual progress indicators
+
+---
+
+## 9. Offline Functionality
+
+**Available Offline:**
+- ✅ Daily mood check-in (syncs when online)
+- ✅ Breathing exercises
+- ✅ Grounding techniques
+- ✅ Journal entries
+- ✅ View saved safety plan
+- ✅ Emergency helpline numbers (cached)
+
+**Requires Internet:**
+- ❌ AI chat
+- ❌ Peer support community
+- ❌ Progress sync across devices
+
+---
+
+## 10. User Journey Success Metrics
+
+### 10.1 Onboarding Success
+- **Target:** 80% complete onboarding
+- **Metric:** % of downloads that complete initial assessment
+
+### 10.2 Engagement
+- **Target:** 60% DAU (Daily Active Users)
+- **Metric:** % of users who complete daily check-in
+
+### 10.3 Feature Adoption
+- **Target:** 70% use 3+ features
+- **Metric:** % of users engaging with multiple features
+
+### 10.4 Crisis Support
+- **Target:** 90% access helpline when in crisis
+- **Metric:** % of crisis events resulting in helpline call
+
+### 10.5 Retention
+- **Target:** 70% retention at 3 months
+- **Metric:** % of users still active after 90 days
+
+---
+
+## Conclusion
+
+The user journey is designed to:
+
+✅ **Minimize friction** to critical features (emergency button, check-in)  
+✅ **Build habits** through daily engagement  
+✅ **Provide immediate support** in crisis moments  
+✅ **Adapt to user needs** through personalization  
+✅ **Encourage long-term use** through progress tracking  
+
+Every flow prioritizes **user safety, privacy, and emotional well-being** above all else.
+
+---
+
+> [!NOTE]
+> **Next Steps:** This user journey will inform UI/UX design, technical architecture, and testing scenarios.

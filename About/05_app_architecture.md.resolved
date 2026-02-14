@@ -1,0 +1,653 @@
+# App Architecture & Technical Specifications
+## Early Emotional Distress Detection & Support App
+
+---
+
+## 1. System Architecture Overview
+
+### 1.1 High-Level Architecture
+
+```mermaid
+graph TD
+    A[Mobile App<br/>iOS & Android] --> B[API Gateway]
+    B --> C[Application Server]
+    C --> D[Authentication Service]
+    C --> E[Data Processing Service]
+    C --> F[AI/ML Service]
+    C --> G[Notification Service]
+    C --> H[Moderation Service]
+    
+    E --> I[(User Database)]
+    E --> J[(Analytics Database)]
+    F --> K[AI Model Storage]
+    H --> L[Content Moderation Queue]
+    
+    C --> M[External Integrations]
+    M --> N[Crisis Helplines API]
+    M --> O[Therapist Directory API]
+    M --> P[SMS/Email Service]
+    
+    I --> Q[Backup & Recovery]
+    J --> Q
+```
+
+### 1.2 Architecture Principles
+
+1. **Privacy First:** End-to-end encryption, local-first data storage
+2. **Offline Capable:** Core features work without internet
+3. **Scalable:** Microservices architecture for independent scaling
+4. **Reliable:** 99.9% uptime for crisis features
+5. **Secure:** HIPAA-compliant data handling (if applicable)
+
+---
+
+## 2. Technology Stack Recommendations
+
+### 2.1 Mobile Application
+
+**Framework:** React Native or Flutter
+
+**Rationale:**
+- Cross-platform (iOS + Android) from single codebase
+- Native performance
+- Large community and libraries
+- Cost-effective development
+
+**Alternative:** Native development (Swift for iOS, Kotlin for Android) if budget allows
+
+**Key Libraries:**
+- **Local Storage:** SQLite with SQLCipher (encryption)
+- **State Management:** Redux or MobX
+- **Notifications:** Firebase Cloud Messaging (FCM)
+- **Analytics:** Firebase Analytics (privacy-compliant)
+- **Offline Sync:** WatermelonDB or Realm
+
+### 2.2 Backend Services
+
+**Language:** Node.js (Express) or Python (FastAPI)
+
+**Rationale:**
+- Fast development
+- Excellent for real-time features (AI chat)
+- Strong ecosystem for AI/ML integration
+
+**API Architecture:** RESTful API + WebSocket for real-time chat
+
+**Authentication:** JWT (JSON Web Tokens) with refresh tokens
+
+### 2.3 Database
+
+**Primary Database:** PostgreSQL
+
+**Rationale:**
+- Robust, ACID-compliant
+- Excellent for structured data (mood logs, assessments)
+- Strong encryption support
+- JSON support for flexible data
+
+**Caching Layer:** Redis
+
+**Rationale:**
+- Fast session management
+- Real-time features (chat, notifications)
+- Rate limiting for API protection
+
+**Analytics Database:** MongoDB or BigQuery
+
+**Rationale:**
+- Flexible schema for analytics
+- Time-series data optimization
+- Aggregation capabilities
+
+### 2.4 AI/ML Services
+
+**AI Chat:** OpenAI GPT-4 API or Google Gemini API
+
+**Rationale:**
+- State-of-the-art natural language understanding
+- Empathetic response generation
+- Fine-tunable for mental health context
+
+**Crisis Detection:** Custom ML model (BERT-based)
+
+**Training Data:**
+- Annotated mental health crisis text
+- Suicide prevention datasets (ethically sourced)
+
+**Deployment:** TensorFlow Serving or AWS SageMaker
+
+### 2.5 Cloud Infrastructure
+
+**Recommended:** AWS, Google Cloud, or Azure
+
+**Services:**
+- **Compute:** AWS EC2 / Google Compute Engine (auto-scaling)
+- **Storage:** AWS S3 / Google Cloud Storage (encrypted)
+- **CDN:** CloudFront / Cloud CDN (fast global access)
+- **Monitoring:** CloudWatch / Stackdriver
+- **Security:** AWS WAF / Google Cloud Armor
+
+**Alternative for Budget:** DigitalOcean or Heroku (early stage)
+
+### 2.6 Third-Party Integrations
+
+| Service | Purpose | Provider Options |
+|---------|---------|------------------|
+| **SMS/Email** | Notifications, OTP | Twilio, SendGrid |
+| **Push Notifications** | App notifications | Firebase Cloud Messaging |
+| **Analytics** | User behavior (privacy-compliant) | Mixpanel, Amplitude |
+| **Error Tracking** | Bug monitoring | Sentry, Rollbar |
+| **Payment** | Premium features (if any) | Stripe, Razorpay |
+
+---
+
+## 3. Data Architecture
+
+### 3.1 Data Models
+
+#### User Profile
+```json
+{
+  "user_id": "uuid",
+  "created_at": "timestamp",
+  "anonymous_username": "string",
+  "primary_stressors": ["workload", "family"],
+  "notification_preferences": {
+    "daily_checkin_time": "21:00",
+    "self_care_reminders": true
+  },
+  "trusted_contacts": [
+    {
+      "name": "string",
+      "phone": "encrypted_string",
+      "relationship": "string"
+    }
+  ]
+}
+```
+
+#### Mood Check-In
+```json
+{
+  "checkin_id": "uuid",
+  "user_id": "uuid",
+  "timestamp": "timestamp",
+  "mood": "happy|good|okay|sad|terrible",
+  "stress_level": 1-5,
+  "work_impact": "significant|somewhat|none",
+  "family_impact": "significant|somewhat|none",
+  "note": "encrypted_string",
+  "crisis_detected": boolean
+}
+```
+
+#### Workload Log
+```json
+{
+  "log_id": "uuid",
+  "user_id": "uuid",
+  "date": "date",
+  "work_start": "time",
+  "work_end": "time",
+  "break_duration": "minutes",
+  "weekend_work": boolean,
+  "on_call": boolean,
+  "total_hours": "calculated"
+}
+```
+
+#### Safety Plan
+```json
+{
+  "plan_id": "uuid",
+  "user_id": "uuid",
+  "warning_signs": ["encrypted_string"],
+  "coping_strategies": ["encrypted_string"],
+  "reasons_to_live": ["encrypted_string"],
+  "professional_contacts": [
+    {
+      "name": "encrypted_string",
+      "phone": "encrypted_string",
+      "type": "therapist|psychiatrist|helpline"
+    }
+  ],
+  "last_updated": "timestamp"
+}
+```
+
+### 3.2 Data Flow Diagram
+
+```mermaid
+graph LR
+    A[User Device] -->|Encrypted| B[API Gateway]
+    B --> C{Authentication}
+    C -->|Valid| D[Application Server]
+    C -->|Invalid| E[Reject]
+    
+    D --> F{Request Type}
+    F -->|Mood Check-In| G[Process & Store]
+    F -->|AI Chat| H[AI Service]
+    F -->|Peer Support| I[Moderation Service]
+    
+    G --> J[(Encrypted DB)]
+    H --> K[Crisis Detection]
+    K -->|Crisis| L[Alert System]
+    K -->|Normal| M[Generate Response]
+    
+    I --> N[Content Filter]
+    N -->|Approved| O[Publish to Community]
+    N -->|Flagged| P[Human Review Queue]
+    
+    J --> Q[Analytics Pipeline]
+    Q --> R[Anonymized Insights]
+```
+
+---
+
+## 4. Privacy & Security Architecture
+
+### 4.1 Data Encryption
+
+**At Rest:**
+- Database: AES-256 encryption
+- File storage: Server-side encryption (SSE)
+- Sensitive fields (notes, journals): Additional field-level encryption
+
+**In Transit:**
+- TLS 1.3 for all API communications
+- Certificate pinning in mobile app
+
+**On Device:**
+- SQLCipher for local database
+- iOS Keychain / Android Keystore for credentials
+
+### 4.2 Authentication & Authorization
+
+**Authentication Flow:**
+
+```mermaid
+graph TD
+    A[User Opens App] --> B{First Time?}
+    B -->|Yes| C[Create Account]
+    B -->|No| D[Login]
+    
+    C --> E[Generate Anonymous ID]
+    E --> F[Create Encryption Keys]
+    F --> G[Store Keys Securely]
+    G --> H[Issue JWT Token]
+    
+    D --> I[Verify Credentials]
+    I --> J{Valid?}
+    J -->|Yes| H
+    J -->|No| K[Reject]
+    
+    H --> L[Access Token + Refresh Token]
+    L --> M[Authenticated Session]
+```
+
+**Authorization:**
+- Role-based access control (RBAC)
+- User can only access own data
+- Moderators can access flagged content only
+- Admins have audit-only access (no PII)
+
+### 4.3 Privacy Compliance
+
+**GDPR Compliance (if applicable):**
+- ✅ Right to access: Users can export all data
+- ✅ Right to deletion: Users can delete account and all data
+- ✅ Data minimization: Collect only necessary data
+- ✅ Consent: Clear opt-in for data collection
+- ✅ Data portability: JSON export of user data
+
+**HIPAA Compliance (if applicable in US):**
+- ✅ Encrypted storage and transmission
+- ✅ Access controls and audit logs
+- ✅ Business Associate Agreements (BAA) with vendors
+- ✅ Breach notification procedures
+
+**India-Specific:**
+- Compliance with Digital Personal Data Protection Act (DPDP)
+- Data localization (store Indian user data in India)
+
+### 4.4 Anonymization for Analytics
+
+**Process:**
+```mermaid
+graph LR
+    A[User Data] --> B[Remove PII]
+    B --> C[Hash User IDs]
+    C --> D[Aggregate Metrics]
+    D --> E[Analytics Database]
+    E --> F[Insights Dashboard]
+```
+
+**Anonymized Metrics:**
+- Aggregate mood trends (no individual identification)
+- Feature usage statistics
+- Crisis event frequency (no user details)
+- Retention and engagement rates
+
+---
+
+## 5. AI/ML Architecture
+
+### 5.1 AI Chat System
+
+**Architecture:**
+
+```mermaid
+graph TD
+    A[User Message] --> B[Input Validation]
+    B --> C[Crisis Keyword Detection]
+    C -->|Crisis| D[Immediate Crisis Response]
+    C -->|Normal| E[Context Retrieval]
+    
+    E --> F[Recent Chat History]
+    F --> G[User Mood Context]
+    G --> H[AI Model GPT-4/Gemini]
+    
+    H --> I[Response Generation]
+    I --> J[Safety Filter]
+    J -->|Safe| K[Return Response]
+    J -->|Unsafe| L[Fallback Response]
+    
+    D --> M[Emergency Resources]
+    K --> N[Log Interaction]
+    L --> N
+```
+
+**Prompt Engineering:**
+
+System Prompt:
+```
+You are a compassionate mental health support companion. Your role is to:
+1. Listen without judgment
+2. Validate emotions
+3. Suggest coping techniques when appropriate
+4. NEVER diagnose or provide medical advice
+5. Detect crisis situations and escalate immediately
+
+User context:
+- Primary stressors: {workload, family}
+- Recent mood: {sad, stress level 4/5}
+- Crisis history: {none}
+
+Respond with empathy and support.
+```
+
+### 5.2 Crisis Detection Model
+
+**Model:** Fine-tuned BERT for text classification
+
+**Training:**
+- Dataset: Annotated mental health crisis text
+- Labels: [crisis, high_risk, medium_risk, low_risk]
+- Accuracy target: 95%+ for crisis detection
+
+**Deployment:**
+- Real-time inference (<500ms)
+- Fallback to keyword matching if model unavailable
+
+**Continuous Improvement:**
+- Human-in-the-loop: Moderators review false positives/negatives
+- Periodic retraining with new data
+
+---
+
+## 6. Integration Architecture
+
+### 6.1 Crisis Helpline Integration
+
+**Current:** Display phone numbers for manual calling
+
+**Future Enhancement:** Direct API integration
+
+**Potential Partners:**
+- AASRA
+- Vandrevala Foundation
+- iCall
+
+**Integration Flow:**
+```mermaid
+graph LR
+    A[Crisis Detected] --> B[User Taps Call]
+    B --> C[App Initiates Call]
+    C --> D[Helpline Receives Call]
+    D --> E[Optional: Send Context]
+    E --> F[Counselor Assists]
+```
+
+**Context Sharing (with user consent):**
+- Recent mood trends
+- Crisis trigger (if known)
+- Safety plan (if created)
+
+### 6.2 Therapist Directory Integration
+
+**Purpose:** Help users find professional help
+
+**Data Sources:**
+- Psychology Today API
+- Local mental health directories
+- Verified therapist databases
+
+**Features:**
+- Filter by location, specialization, language
+- Insurance compatibility
+- Availability
+- User reviews
+
+---
+
+## 7. Scalability Considerations
+
+### 7.1 Horizontal Scaling
+
+**Stateless Services:**
+- API servers can scale horizontally
+- Load balancer distributes traffic
+- Auto-scaling based on CPU/memory usage
+
+**Database Scaling:**
+- Read replicas for analytics queries
+- Sharding by user_id for large datasets
+- Connection pooling
+
+### 7.2 Performance Optimization
+
+**Caching Strategy:**
+- Redis for session data (TTL: 24 hours)
+- CDN for static assets
+- API response caching (short TTL for dynamic data)
+
+**Database Optimization:**
+- Indexes on frequently queried fields (user_id, timestamp)
+- Partitioning for time-series data (mood logs by month)
+- Query optimization and monitoring
+
+### 7.3 Load Estimates
+
+**Assumptions:**
+- 100,000 active users
+- 60% daily active users (DAU)
+- Average 5 API calls per session
+
+**Calculations:**
+- Daily API calls: 100,000 × 0.6 × 5 = 300,000
+- Peak load (assuming 20% in peak hour): 60,000 calls/hour = 16.7 calls/second
+
+**Infrastructure:**
+- 2-4 API servers (with auto-scaling)
+- 1 primary database + 2 read replicas
+- 1 Redis instance
+
+---
+
+## 8. Monitoring & Observability
+
+### 8.1 Key Metrics
+
+**Application Metrics:**
+- API response time (target: <200ms)
+- Error rate (target: <0.1%)
+- Uptime (target: 99.9%)
+
+**User Metrics:**
+- Daily/Monthly Active Users (DAU/MAU)
+- Feature usage rates
+- Crisis event frequency
+
+**Business Metrics:**
+- User retention (7-day, 30-day)
+- Engagement rate (check-ins completed)
+- Professional help referrals
+
+### 8.2 Alerting
+
+**Critical Alerts:**
+- API downtime
+- Database connection failures
+- Crisis detection model failures
+- Spike in crisis events
+
+**Warning Alerts:**
+- High error rates
+- Slow response times
+- Low disk space
+
+### 8.3 Logging
+
+**Log Levels:**
+- ERROR: System failures, exceptions
+- WARN: Unusual patterns, deprecated features
+- INFO: User actions (anonymized)
+- DEBUG: Detailed troubleshooting (dev only)
+
+**Log Retention:**
+- 30 days for operational logs
+- 90 days for audit logs
+- Permanent for crisis events (anonymized)
+
+---
+
+## 9. Deployment Architecture
+
+### 9.1 Environments
+
+**Development:**
+- Local development environment
+- Shared dev database
+- Mock external services
+
+**Staging:**
+- Production-like environment
+- Anonymized production data (optional)
+- Full integration testing
+
+**Production:**
+- Multi-region deployment (for redundancy)
+- Blue-green deployment for zero-downtime updates
+- Automated rollback on failures
+
+### 9.2 CI/CD Pipeline
+
+```mermaid
+graph LR
+    A[Code Commit] --> B[Automated Tests]
+    B --> C{Tests Pass?}
+    C -->|Yes| D[Build Docker Image]
+    C -->|No| E[Notify Developer]
+    D --> F[Push to Registry]
+    F --> G[Deploy to Staging]
+    G --> H[Integration Tests]
+    H --> I{Tests Pass?}
+    I -->|Yes| J[Manual Approval]
+    I -->|No| E
+    J --> K[Deploy to Production]
+    K --> L[Health Checks]
+    L --> M{Healthy?}
+    M -->|Yes| N[Complete]
+    M -->|No| O[Rollback]
+```
+
+---
+
+## 10. Disaster Recovery & Business Continuity
+
+### 10.1 Backup Strategy
+
+**Database Backups:**
+- Automated daily backups
+- Retention: 30 days
+- Encrypted and stored in separate region
+
+**Recovery Time Objective (RTO):** 4 hours
+**Recovery Point Objective (RPO):** 24 hours
+
+### 10.2 Failover Strategy
+
+**Database:**
+- Primary-replica setup
+- Automatic failover to replica
+- Manual promotion if needed
+
+**Application Servers:**
+- Multi-region deployment
+- DNS failover to secondary region
+
+---
+
+## 11. Cost Estimation (Monthly)
+
+**Assumptions:** 100,000 active users
+
+| Component | Service | Estimated Cost |
+|-----------|---------|----------------|
+| **Compute** | AWS EC2 (4 instances) | $400 |
+| **Database** | AWS RDS PostgreSQL | $300 |
+| **Storage** | AWS S3 | $50 |
+| **CDN** | CloudFront | $100 |
+| **AI API** | OpenAI GPT-4 (100k calls) | $500 |
+| **Notifications** | Firebase + Twilio | $200 |
+| **Monitoring** | CloudWatch + Sentry | $100 |
+| **Total** | | **$1,650/month** |
+
+**Note:** Costs scale with user base. Optimize with reserved instances and volume discounts.
+
+---
+
+## 12. Technology Alternatives (Budget-Conscious)
+
+### 12.1 Open-Source Alternatives
+
+| Commercial | Open-Source Alternative |
+|------------|-------------------------|
+| OpenAI GPT-4 | Llama 3 (self-hosted) |
+| AWS | DigitalOcean, Hetzner |
+| Firebase | Supabase, Appwrite |
+| Sentry | Self-hosted Sentry |
+
+**Trade-offs:**
+- Lower cost
+- More maintenance overhead
+- Potentially lower performance
+
+---
+
+## Conclusion
+
+This architecture is designed to be:
+
+✅ **Secure & Private:** End-to-end encryption, GDPR/HIPAA compliant  
+✅ **Scalable:** Microservices, horizontal scaling  
+✅ **Reliable:** 99.9% uptime, disaster recovery  
+✅ **Cost-Effective:** Optimized for early-stage deployment  
+✅ **Maintainable:** Modern tech stack, CI/CD automation  
+
+The architecture prioritizes **user safety and privacy** while ensuring the app can scale to serve millions of users in need.
+
+---
+
+> [!NOTE]
+> **Next Steps:** This architecture will guide technical implementation, infrastructure setup, and DevOps planning.

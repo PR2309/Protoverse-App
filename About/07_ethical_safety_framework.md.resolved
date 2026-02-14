@@ -1,0 +1,692 @@
+# Ethical & Safety Framework
+## Early Emotional Distress Detection & Support App
+
+---
+
+## 1. Core Ethical Principles
+
+### 1.1 Foundational Values
+
+The app is built on these non-negotiable ethical foundations:
+
+> [!IMPORTANT]
+> **Primary Principle: First, Do No Harm**
+> 
+> Every design decision, feature, and interaction must prioritize user safety and well-being above engagement, revenue, or any other metric.
+
+**Core Values:**
+
+1. **User Safety First:** Emotional and physical safety takes absolute priority
+2. **Transparency:** Clear communication about capabilities and limitations
+3. **Autonomy:** Users maintain control over their data and choices
+4. **Non-Maleficence:** Avoid causing harm through design or content
+5. **Beneficence:** Actively promote user well-being
+6. **Justice:** Equitable access regardless of economic status
+7. **Privacy:** Protect user confidentiality at all costs
+
+### 1.2 Ethical Design Principles
+
+#### Principle 1: Honest Representation
+
+**What This Means:**
+- Never claim to diagnose, treat, or cure mental health conditions
+- Clearly state the app is supportive, not therapeutic
+- Acknowledge limitations prominently
+
+**Implementation:**
+- Disclaimer on first launch
+- Regular reminders in AI chat
+- "About" section explaining boundaries
+
+#### Principle 2: Informed Consent
+
+**What This Means:**
+- Users understand what data is collected and why
+- Explicit opt-in for data sharing
+- Easy withdrawal of consent
+
+**Implementation:**
+- Clear privacy policy (plain language, not legalese)
+- Granular consent options (analytics, research, etc.)
+- One-click data deletion
+
+#### Principle 3: Emotional Safety
+
+**What This Means:**
+- Avoid triggering or harmful content
+- Validate emotions without judgment
+- Create psychologically safe environment
+
+**Implementation:**
+- Trigger warnings in peer support
+- Empathetic, non-judgmental language
+- Crisis intervention always accessible
+
+#### Principle 4: Professional Boundaries
+
+**What This Means:**
+- App complements, never replaces, professional care
+- Actively encourage professional help when needed
+- No medical or diagnostic advice
+
+**Implementation:**
+- Therapist directory integration
+- Professional help suggestions for severe symptoms
+- Clear disclaimers in AI chat
+
+---
+
+## 2. Crisis Detection & Intervention Protocols
+
+### 2.1 Crisis Definition
+
+**Crisis Indicators:**
+- Suicidal ideation (thoughts of self-harm or ending life)
+- Active self-harm behavior
+- Severe hopelessness with plan
+- Acute psychotic symptoms
+- Immediate danger to self or others
+
+### 2.2 Multi-Layer Crisis Detection
+
+```mermaid
+graph TD
+    A[User Interaction] --> B[Layer 1: Keyword Detection]
+    B --> C{Crisis Keywords?}
+    C -->|Yes| D[Flag for Review]
+    C -->|No| E[Layer 2: ML Model]
+    
+    E --> F{High Crisis Probability?}
+    F -->|Yes| D
+    F -->|No| G[Layer 3: Pattern Analysis]
+    
+    G --> H{Severe Mood Decline?}
+    H -->|Yes| D
+    H -->|No| I[Normal Flow]
+    
+    D --> J[Immediate Crisis Response]
+```
+
+**Layer 1: Keyword Detection**
+
+Crisis keywords:
+- "suicide," "kill myself," "end it all"
+- "want to die," "better off dead"
+- "no point in living," "can't go on"
+- "goodbye" (in concerning context)
+
+**Layer 2: ML Model**
+
+- BERT-based crisis classification
+- Trained on mental health crisis text
+- Confidence threshold: 85%+
+
+**Layer 3: Pattern Analysis**
+
+- Mood: 😢 for 5+ consecutive days
+- Stress: 5/5 for 7+ consecutive days
+- Sudden severe decline (😊 to 😢 in 2 days)
+- Multiple crisis-adjacent phrases
+
+### 2.3 Crisis Intervention Protocol
+
+**Immediate Actions (< 5 seconds):**
+
+1. **Display Emergency Resources Screen**
+   - Crisis helplines (one-tap call)
+   - Trusted contacts
+   - Safety plan
+
+2. **Pause Normal App Flow**
+   - No distractions
+   - Focus on crisis support
+
+3. **Log Crisis Event**
+   - For follow-up
+   - For analytics (anonymized)
+
+**Crisis Response Message:**
+
+```
+🚨 We're Concerned About You
+
+What you're feeling sounds incredibly painful. 
+You don't have to face this alone.
+
+Please reach out to someone who can help right now:
+
+📞 AASRA: 91-22-27546669 (24/7)
+   [TAP TO CALL]
+
+📞 Vandrevala Foundation: 1860-2662-345 (24/7)
+   [TAP TO CALL]
+
+👤 Call Your Trusted Contact: [Name]
+   [TAP TO CALL]
+
+📋 View Your Safety Plan
+   [TAP TO VIEW]
+
+You matter. Your life has value.
+```
+
+### 2.4 Post-Crisis Follow-Up
+
+**24-Hour Check-In:**
+- Push notification: "We're thinking of you. How are you today?"
+- Gentle mood check-in
+- Professional help resources
+
+**If No Response:**
+- Second notification at 48 hours
+- If still no response, log for concern (no action without consent)
+
+**If User Responds:**
+- Assess current state
+- Suggest professional help if still in crisis
+- Offer to help find therapist
+
+### 2.5 Crisis Escalation Limits
+
+**What the App CANNOT Do:**
+- Contact emergency services without user consent
+- Notify family/friends without permission
+- Physically intervene
+
+**Rationale:**
+- User autonomy is paramount
+- Forced intervention can damage trust
+- Legal and ethical constraints
+
+**Exception:**
+- If legally required to report imminent danger (jurisdiction-dependent)
+- Clear disclosure of mandatory reporting in Terms of Service
+
+---
+
+## 3. Privacy & Data Protection
+
+### 3.1 Data Minimization
+
+**Principle:** Collect only what's necessary
+
+**What We Collect:**
+- ✅ Mood check-ins (for early detection)
+- ✅ Feature usage (for improvement)
+- ✅ Crisis events (for safety)
+
+**What We DON'T Collect:**
+- ❌ Real names (anonymous usernames only)
+- ❌ Photos or videos
+- ❌ Location data (unless user opts in for therapist search)
+- ❌ Contact lists
+- ❌ Browsing history
+
+### 3.2 Data Encryption
+
+**At Rest:**
+- AES-256 encryption for all databases
+- Field-level encryption for sensitive data (journals, notes)
+
+**In Transit:**
+- TLS 1.3 for all communications
+- Certificate pinning in mobile app
+
+**On Device:**
+- SQLCipher for local database
+- Biometric authentication option
+
+### 3.3 Data Access Controls
+
+**Who Can Access User Data:**
+
+| Role | Access | Purpose |
+|------|--------|---------|
+| **User** | Full access to own data | Self-management |
+| **System** | Automated processing only | Feature functionality |
+| **Moderators** | Flagged content only | Safety enforcement |
+| **Developers** | Anonymized, aggregated data | Analytics, improvement |
+| **Admins** | Audit logs only (no PII) | Security monitoring |
+
+**Who CANNOT Access:**
+- ❌ Employers
+- ❌ Family members
+- ❌ Insurance companies
+- ❌ Law enforcement (without valid warrant)
+
+### 3.4 User Rights
+
+**Right to Access:**
+- Export all data in JSON format
+- View data collection practices
+
+**Right to Deletion:**
+- One-click account deletion
+- All data permanently deleted within 30 days
+- Confirmation email
+
+**Right to Portability:**
+- Download data in standard format
+- Transfer to another service
+
+**Right to Correction:**
+- Edit or delete individual entries
+- Update personal information
+
+### 3.5 Third-Party Data Sharing
+
+**Never Shared:**
+- Individual user data
+- Identifiable information
+- Crisis events
+
+**Shared Only with Consent:**
+- Anonymized research data (opt-in)
+- Aggregate trends (no individual identification)
+
+**Third-Party Services:**
+- AI providers (OpenAI, Google): Anonymized chat text only
+- Analytics (Mixpanel): Anonymized usage data
+- Cloud providers (AWS): Encrypted data storage
+
+**Contractual Protections:**
+- Data Processing Agreements (DPA)
+- No data retention by third parties
+- GDPR/HIPAA compliance requirements
+
+---
+
+## 4. Content Moderation (Peer Support)
+
+### 4.1 Community Guidelines
+
+**Allowed Content:**
+- ✅ Personal experiences and struggles
+- ✅ Supportive responses
+- ✅ Coping strategies that worked
+- ✅ Questions and advice-seeking
+- ✅ Celebrating progress
+
+**Prohibited Content:**
+- ❌ Graphic descriptions of self-harm or suicide methods
+- ❌ Harassment, bullying, or hate speech
+- ❌ Medical or diagnostic advice
+- ❌ Promotion of products/services
+- ❌ Identifying personal information
+- ❌ Encouragement of harmful behaviors
+
+### 4.2 Moderation Workflow
+
+```mermaid
+graph TD
+    A[User Posts Content] --> B[Automated Filter]
+    B --> C{Contains Prohibited Content?}
+    C -->|Yes| D[Block Immediately]
+    C -->|No| E[Publish to Community]
+    
+    E --> F{User Reports?}
+    F -->|Yes| G[Human Review Queue]
+    F -->|No| H[Remains Published]
+    
+    G --> I[Moderator Reviews]
+    I --> J{Violates Guidelines?}
+    J -->|Yes| K[Remove Post]
+    J -->|No| L[Keep Published]
+    
+    K --> M{Severe Violation?}
+    M -->|Yes| N[Ban User]
+    M -->|No| O[Warning to User]
+    
+    D --> P[Notify User]
+    N --> P
+    O --> P
+```
+
+### 4.3 Automated Moderation
+
+**AI Content Filter:**
+- Profanity detection
+- Hate speech detection
+- Graphic content detection
+- Crisis language detection
+
+**Action:**
+- Block post immediately
+- Notify user of violation
+- Suggest alternative phrasing
+
+### 4.4 Human Moderation
+
+**Moderator Training:**
+- Mental health awareness
+- Crisis intervention basics
+- Empathetic communication
+- Cultural sensitivity
+
+**Review SLA:**
+- Flagged content reviewed within 1 hour
+- Crisis content reviewed within 15 minutes
+
+**Moderator Support:**
+- Regular mental health check-ins
+- Access to counseling (vicarious trauma prevention)
+- Rotation to prevent burnout
+
+### 4.5 Appeal Process
+
+**If Content Removed:**
+- User notified with reason
+- Option to appeal within 7 days
+- Different moderator reviews appeal
+- Decision within 48 hours
+
+---
+
+## 5. Professional Boundaries & Disclaimers
+
+### 5.1 Clear Disclaimers
+
+**Displayed Prominently:**
+
+**On First Launch:**
+> ⚠️ **Important Information**
+> 
+> This app supports mental well-being but does NOT:
+> - Diagnose mental health conditions
+> - Provide medical treatment
+> - Replace professional mental health care
+> 
+> If you're experiencing a mental health crisis, please contact a professional immediately.
+
+**In AI Chat:**
+> 💙 **Reminder:** I'm here to listen and support, but I'm not a therapist. For professional help, please reach out to a licensed mental health professional.
+
+**In App Footer:**
+> This app is not a substitute for professional mental health care.
+
+### 5.2 When to Recommend Professional Help
+
+**Automatic Recommendations:**
+- Crisis detected
+- Severe symptoms persist 4+ weeks
+- User explicitly asks for therapy
+- Mood decline despite app usage
+
+**Recommendation Message:**
+> **Consider Professional Support**
+> 
+> Your symptoms suggest you might benefit from professional help. A licensed therapist can provide personalized treatment.
+> 
+> [Find a Therapist Near You]
+> [Learn About Therapy]
+
+### 5.3 Therapist Directory Standards
+
+**Verification:**
+- Licensed professionals only
+- Verified credentials
+- Active practice status
+
+**Information Provided:**
+- Specializations
+- Languages spoken
+- Insurance accepted
+- Contact information
+
+**No Endorsement:**
+- App does not endorse specific therapists
+- User reviews optional (moderated)
+
+---
+
+## 6. Regulatory Compliance
+
+### 6.1 Medical Device Classification
+
+**Status:** NOT a medical device
+
+**Rationale:**
+- Does not diagnose or treat
+- Supportive and educational only
+- No medical claims
+
+**Implication:**
+- No FDA approval required (US)
+- No medical device regulations (India)
+
+### 6.2 Data Protection Regulations
+
+**GDPR (EU users):**
+- ✅ Lawful basis for processing (consent)
+- ✅ Data minimization
+- ✅ Right to access, deletion, portability
+- ✅ Data breach notification (72 hours)
+
+**DPDP Act (India):**
+- ✅ Consent-based data collection
+- ✅ Data localization (Indian user data in India)
+- ✅ User rights (access, deletion)
+- ✅ Data breach notification
+
+**HIPAA (US, if applicable):**
+- ✅ Encrypted storage and transmission
+- ✅ Access controls
+- ✅ Audit logs
+- ✅ Business Associate Agreements
+
+### 6.3 Accessibility Compliance
+
+**WCAG 2.1 Level AA:**
+- ✅ Screen reader compatibility
+- ✅ Keyboard navigation
+- ✅ Color contrast ratios
+- ✅ Text resizing (up to 200%)
+- ✅ Alternative text for images
+
+---
+
+## 7. Ethical AI Use
+
+### 7.1 AI Transparency
+
+**Users Must Know:**
+- They're chatting with AI, not a human
+- AI has limitations and can make mistakes
+- AI cannot provide medical advice
+
+**Disclosure:**
+> 🤖 **You're chatting with an AI support companion.** I'm here to listen and support, but I'm not a human therapist.
+
+### 7.2 AI Bias Mitigation
+
+**Training Data:**
+- Diverse, representative datasets
+- Multiple languages and cultures
+- Avoid stereotypes
+
+**Monitoring:**
+- Regular bias audits
+- User feedback on AI responses
+- Continuous improvement
+
+### 7.3 AI Safety Guardrails
+
+**Prohibited AI Behaviors:**
+- ❌ Providing medical diagnoses
+- ❌ Recommending medications
+- ❌ Making promises ("You'll be fine")
+- ❌ Dismissing user concerns
+- ❌ Encouraging harmful behaviors
+
+**Safety Filters:**
+- Response validation before sending
+- Fallback to safe responses if uncertain
+- Human review of flagged interactions
+
+---
+
+## 8. Vulnerable Populations
+
+### 8.1 Age Restrictions
+
+**Minimum Age:** 18 years
+
+**Rationale:**
+- Mental health support for minors requires parental consent
+- Different crisis protocols for minors
+- Legal liability concerns
+
+**Alternative:**
+- Separate app version for teens (with parental consent)
+- Referral to age-appropriate resources
+
+### 8.2 Cultural Sensitivity
+
+**Considerations:**
+- Family dynamics vary by culture
+- Mental health stigma differs across cultures
+- Language and communication styles
+
+**Implementation:**
+- Multilingual support
+- Culturally adapted content
+- Diverse representation in examples
+
+### 8.3 Accessibility for Disabilities
+
+**Visual Impairments:**
+- Screen reader support
+- High contrast mode
+- Voice input/output
+
+**Hearing Impairments:**
+- Text-based communication (no audio-only features)
+- Visual alerts
+
+**Cognitive Disabilities:**
+- Simple, clear language
+- Consistent navigation
+- Minimal cognitive load
+
+---
+
+## 9. Risk Mitigation
+
+### 9.1 Identified Risks
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| **User in crisis not helped** | Medium | Critical | Multi-layer crisis detection, immediate helpline access |
+| **Data breach** | Low | High | Encryption, access controls, regular audits |
+| **AI provides harmful advice** | Low | High | Safety filters, human review, disclaimers |
+| **Peer support harassment** | Medium | Medium | Moderation, reporting, blocking |
+| **Over-reliance on app** | Medium | Medium | Regular professional help suggestions |
+| **Triggering content** | Medium | Medium | Trigger warnings, content moderation |
+
+### 9.2 Incident Response Plan
+
+**Data Breach:**
+1. Immediately contain breach
+2. Assess scope and impact
+3. Notify affected users within 72 hours
+4. Report to regulators (GDPR, DPDP)
+5. Implement fixes
+6. Post-mortem and prevention
+
+**Crisis Mishandling:**
+1. Review incident details
+2. Assess if user received help
+3. Improve detection algorithms
+4. Update crisis protocols
+5. Additional moderator training
+
+**AI Harmful Response:**
+1. Immediately disable AI if systemic issue
+2. Review and fix prompt engineering
+3. Add safety filters
+4. Notify affected users
+5. Retrain model if needed
+
+---
+
+## 10. Ethical Review & Governance
+
+### 10.1 Ethics Advisory Board
+
+**Composition:**
+- Clinical psychologists (2)
+- Psychiatrist (1)
+- Ethicist (1)
+- User representative (1)
+- Legal expert (1)
+
+**Responsibilities:**
+- Review ethical implications of new features
+- Audit crisis intervention protocols
+- Advise on vulnerable populations
+- Annual ethics review
+
+### 10.2 Continuous Ethical Assessment
+
+**Quarterly Reviews:**
+- Crisis intervention effectiveness
+- User safety incidents
+- Privacy compliance
+- AI performance and bias
+
+**Annual Audits:**
+- Full ethical framework review
+- Regulatory compliance check
+- User feedback integration
+- Third-party security audit
+
+---
+
+## 11. Transparency & Accountability
+
+### 11.1 Public Transparency Report (Annual)
+
+**Contents:**
+- Number of users served
+- Crisis interventions performed
+- Professional help referrals
+- Content moderation statistics
+- Data breach incidents (if any)
+- Ethical challenges faced
+
+### 11.2 User Feedback Mechanisms
+
+**Channels:**
+- In-app feedback form
+- Email support
+- User surveys (quarterly)
+- Focus groups (biannual)
+
+**Commitment:**
+- Respond to feedback within 48 hours
+- Implement user suggestions when aligned with ethics
+- Transparent communication about changes
+
+---
+
+## Conclusion
+
+This ethical and safety framework ensures that the Early Emotional Distress Detection & Support App:
+
+✅ **Prioritizes user safety** above all else  
+✅ **Maintains professional boundaries** and never replaces therapy  
+✅ **Protects user privacy** with robust encryption and access controls  
+✅ **Detects and intervenes** in crisis situations effectively  
+✅ **Moderates content** to maintain a safe community  
+✅ **Complies with regulations** (GDPR, DPDP, HIPAA)  
+✅ **Uses AI responsibly** with transparency and safety guardrails  
+✅ **Serves vulnerable populations** with cultural sensitivity  
+✅ **Mitigates risks** through proactive planning  
+✅ **Maintains accountability** through governance and transparency  
+
+**This framework is a living document** that will evolve as we learn from users, research, and ethical best practices.
+
+---
+
+> [!NOTE]
+> **Next Steps:** This ethical framework will guide all design, development, and operational decisions throughout the app's lifecycle.
