@@ -49,15 +49,15 @@ export const ServicesPage = () => (
         <h1>Our Services</h1>
 
         <div className="info-card">
-            <h3>📝 Daily Mood Tracking</h3>
+            <h3>Daily Mood Tracking</h3>
             <p>
                 Track your emotional state and stress levels daily. Build awareness of patterns and triggers
-                over time with our simple, emoji-based check-in system.
+                over time with our simple check-in system.
             </p>
         </div>
 
         <div className="info-card">
-            <h3>💬 AI Support Chat</h3>
+            <h3>AI Support Chat</h3>
             <p>
                 Talk to our AI companion trained to listen without judgment. While not a replacement for
                 professional therapy, it provides a safe space to express your thoughts and feelings.
@@ -65,7 +65,7 @@ export const ServicesPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>🧘 Calming Exercises</h3>
+            <h3>Calming Exercises</h3>
             <p>
                 Access guided breathing exercises, meditation techniques, and grounding practices to manage
                 stress and anxiety in the moment.
@@ -73,7 +73,7 @@ export const ServicesPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>👥 Peer Community</h3>
+            <h3>Peer Community</h3>
             <p>
                 Connect with others facing similar challenges in moderated, topic-based support rooms.
                 Share experiences and find solidarity.
@@ -81,7 +81,7 @@ export const ServicesPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>🚨 Crisis Support</h3>
+            <h3>Crisis Support</h3>
             <p>
                 Immediate access to crisis helplines, emergency contacts, and safety planning tools when
                 you need help right away.
@@ -89,7 +89,7 @@ export const ServicesPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>📊 Progress Insights</h3>
+            <h3>Progress Insights</h3>
             <p>
                 Visualize your mental health journey with weekly summaries, streak tracking, and personalized
                 insights based on your check-ins.
@@ -129,11 +129,11 @@ export const PrivacyPage = () => (
         <div className="info-card">
             <h3>What We Don't Do</h3>
             <ul>
-                <li>❌ We don't sell your data</li>
-                <li>❌ We don't share your data with third parties</li>
-                <li>❌ We don't track your activity</li>
-                <li>❌ We don't require account creation</li>
-                <li>❌ We don't use cookies for tracking</li>
+                <li>We don't sell your data</li>
+                <li>We don't share your data with third parties</li>
+                <li>We don't track your activity</li>
+                <li>We don't require account creation</li>
+                <li>We don't use cookies for tracking</li>
             </ul>
         </div>
 
@@ -177,13 +177,13 @@ export const ContactPage = () => (
         <h1>Contact Us</h1>
 
         <div className="info-card">
-            <h3>📧 General Inquiries</h3>
+            <h3>General Inquiries</h3>
             <p><strong>Email:</strong> support@distresssupport.app</p>
             <p>We typically respond within 24-48 hours.</p>
         </div>
 
         <div className="info-card">
-            <h3>🚨 Crisis Support</h3>
+            <h3>Crisis Support</h3>
             <p>
                 <strong>If you're in crisis, please don't email us.</strong> Instead, use our emergency
                 support page to access 24/7 crisis helplines:
@@ -196,7 +196,7 @@ export const ContactPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>💼 Professional Partnerships</h3>
+            <h3>Professional Partnerships</h3>
             <p><strong>Email:</strong> partnerships@distresssupport.app</p>
             <p>
                 Interested in partnering with us? We work with mental health professionals, organizations,
@@ -205,7 +205,7 @@ export const ContactPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>🐛 Report a Bug</h3>
+            <h3>Report a Bug</h3>
             <p><strong>Email:</strong> bugs@distresssupport.app</p>
             <p>
                 Found a technical issue? Let us know! Please include:
@@ -218,7 +218,7 @@ export const ContactPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>💡 Feature Requests</h3>
+            <h3>Feature Requests</h3>
             <p><strong>Email:</strong> feedback@distresssupport.app</p>
             <p>
                 We'd love to hear your ideas for improving the app!
@@ -226,7 +226,7 @@ export const ContactPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>🌐 Social Media</h3>
+            <h3>Social Media</h3>
             <p>Follow us for updates and mental health resources:</p>
             <ul>
                 <li>Twitter: @DistressSupport</li>
@@ -236,7 +236,7 @@ export const ContactPage = () => (
         </div>
 
         <div className="info-card">
-            <h3>📍 Office Address</h3>
+            <h3>Office Address</h3>
             <p>
                 Early Distress Support Initiative<br />
                 Mental Health Innovation Hub<br />
@@ -311,7 +311,7 @@ export const DisclaimerPage = () => (
         <h1>Medical Disclaimer</h1>
 
         <div className="info-card">
-            <h3>⚠️ Important Notice</h3>
+            <h3>Important Notice</h3>
             <p>
                 <strong>Early Distress Support is not a medical or mental health service.</strong> The
                 information and tools provided are for educational and supportive purposes only.

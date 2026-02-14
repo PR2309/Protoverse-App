@@ -4,21 +4,24 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pages deploys to /<repo-name>/
+  // Change 'Protoverse' to your actual GitHub repo name
+  base: '/Protoverse/',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+      includeAssets: ['favicon.ico', 'icon-192.svg', 'icon-512.svg'],
       manifest: {
         name: 'Early Emotional Distress Detection & Support',
         short_name: 'Distress Support',
-        description: 'Mental health support app for early-career individuals experiencing workload and family pressure',
+        description: 'Mental health support app for early-career individuals',
         theme_color: '#4A90E2',
-        background_color: '#F8F9FA',
+        background_color: '#F0F2F5',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
+        scope: '/Protoverse/',
+        start_url: '/Protoverse/',
         icons: [
           {
             src: 'icon-192.svg',
@@ -44,7 +47,21 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+                maxAgeSeconds: 60 * 60 * 24 * 365
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-webfonts',
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 60 * 60 * 24 * 365
               },
               cacheableResponse: {
                 statuses: [0, 200]
