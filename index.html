@@ -8,8 +8,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" data-comment="Behave more like a native iOS app when added to the home screen" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Distress Support" />
-    <meta name="theme-color" content="#4A90E2" data-comment="Used by Chrome, Firefox OS, and opera to change the browser address bar" />
-    <meta name="msapplication-TileColor" content="#00aba9" data-comment="Used by windows 8, 8.1, and 10 for the start menu tiles" />
+    <meta name="application-name" content="Early Distress Support" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#5F7FA8" data-comment="Used by Chrome, Firefox OS, and opera to change the browser address bar" />
+    <meta name="msapplication-TileColor" content="#5F7FA8" data-comment="Used by windows 8, 8.1, and 10 for the start menu tiles" />
     <!-- <meta http-equiv="refresh" content="360" data-comment="Meta tag to refresh the page every 360 seconds=1Hour"/> -->
 
     <title>Early Distress Support - Mental Health App</title>
@@ -23,8 +25,8 @@
 
     <!-- Favicon -->
     <link rel="icon" href="./icon-192.svg" type="image/svg+xml" data-comment="Favicon for modern browsers (SVG format)" />
-    <link rel="icon" href="./icon-192.svg" type="image/x-icon" data-comment="Favicon fallback target older browsers like IE 10 and lower (ICO/PNG format)" />
-    <link rel="apple-touch-icon" href="./icon-192.svg" data-comment="Favicon for Apple Touch Icon (iOS home screen)" />
+    <link rel="icon" href="./icon-512.ico" type="image/x-icon" data-comment="Favicon fallback target older browsers like IE 10 and lower (ICO/PNG format)" />
+    <link rel="apple-touch-icon" href="./icon-512.png" data-comment="Favicon for Apple Touch Icon (iOS home screen)" />
     <link rel="mask-icon" href="./icon-192.svg" color="#193860" data-comment="Favicon for Safari pinned tabs (macOS)" />
 
     <!-- SEO Meta Tags -->
@@ -32,24 +34,25 @@
     <meta name="description" content="Early Emotional Distress Detection & Support App - Mental health support for early-career individuals" data-comment="Description of web page for SEO" />
     <meta name="keywords" content="Emotional Distress, Emotions, Mental Health, Support, Early-career individuals" data-comment="Keywords of web page for SEO" />
     <!-- <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self';" data-comment="Prevents from being embedded in an iframe to avoid clickjacking attacks"/> -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="robots" content="index, follow" data-comment="To tell crawlers to crawl in this page" />
-    <link rel="manifest" href="./public/manifest.json" data-comment="An information file for Browser and Progressive Web Apps" />
-    <!-- <link rel="canonical" href="https://pr2309.github.io/CHE110_Project/" data-comment="tells the main link of site avoiding multiple ranking of sublinks"/> -->
+    <link rel="manifest" href="/manifest.json" data-comment="An information file for Browser and Progressive Web Apps" />
+    <link rel="canonical"href="https://protoverse-early-distress-support.netlify.app/" data-comment="tells the main link of site avoiding multiple ranking of sublinks"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet" />
 
     <!-- SEO Multilingual Versions Tags -->
-    <!-- <link rel="alternate" hreflang="en(main_Language_code)" href="URL_of_main_site" data-comment="Tells search engines which language version of the page to show"/> -->
-    <!-- <link rel="alternate" hreflang="x-default" href="URL_of_main_site" data-comment="Wild card for fallback"/> -->
+    <link rel="alternate" hreflang="en" href="https://protoverse-early-distress-support.netlify.app/" data-comment="Tells search engines which language version of the page to show"/>
+    <link rel="alternate" hreflang="x-default" href="https://protoverse-early-distress-support.netlify.app/" data-comment="Wild card for fallback"/>
 
     <!-- OpenGraph Meta Tags - For Social Media Previews -->
     <meta property="og:title" content="Emotional Distress Support" data-comment="Title of your webpage" />
     <meta property="og:description" content="Emotional Distress Support - Mental health support for early-career individuals" data-comment="Short description of your page" />
-    <!-- <meta property="og:url" content="https://pr2309.github.io/CHE110_Project/" data-comment="site_url" /> -->
+    <meta property="og:url" content="https://protoverse-early-distress-support.netlify.app/" data-comment="site_url" />
     <meta property="og:type" content="website" data-comment="website_content_type" />
     <meta property="og:site_name" content="Emotional Distress Support" data-comment="site_name" />
-    <!-- <meta property="og:image" content="https://pr2309.github.io/CHE110_Project/img/logo.png" data-comment="preview_image_link - visble when shared" /> -->
+    <meta property="og:image" content="https://protoverse-early-distress-support.netlify.app/icon-512.svg" data-comment="preview_image_link - visble when shared" />
     <meta property="og:image:alt" content="App Banner" data-comment="Alternate text if preview isn't displayed" />
     <meta property="og:image:width" content="1200" data-comment="width of preview image 1200px recommended" />
     <meta property="og:image:height" content="630" data-comment="height of preview image 630px recommended" />
@@ -60,7 +63,7 @@
     <meta name="twitter:card" content="summary_large_image" data-comment="Tells the type of presentation, eg: summary, summary_large_image, app, player" />
     <meta name="twitter:title" content="Emotional Distress Support" data-comment="Title for Twitter card" />
     <meta name="twitter:description" content="Emotional Distress Support - Mental health support for early-career individuals" data-comment="Description for Twitter card" />
-    <!-- <meta name="twitter:image" content="https://pr2309.github.io/CHE110_Project/img/logo.png" data-comment="preview image url" /> -->
+    <meta name="twitter:image" content="https://protoverse-early-distress-support.netlify.app/icon-512.svg" data-comment="preview image url" />
     <meta name="twitter:image:alt" content="App Banner" data-comment="Alternate text if preview isn't displayed" />
     <meta name="twitter:image:width" content="1200" data-comment="width of preview image 1200px recommended" />
     <meta name="twitter:image:height" content="630" data-comment="height of preview image 630px recommended" />

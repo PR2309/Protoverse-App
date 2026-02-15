@@ -1,56 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- Home -->
   <url>
-    <loc>https://distresssupport.app/</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- Core Features -->
   <url>
-    <loc>https://distresssupport.app/emergency</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/emergency</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://distresssupport.app/exercises</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/exercises</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://distresssupport.app/chat</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/chat</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://distresssupport.app/community</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/community</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Info Pages -->
   <url>
-    <loc>https://distresssupport.app/about</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/about</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://distresssupport.app/services</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/services</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+
   <url>
-    <loc>https://distresssupport.app/contact</loc>
-    <lastmod>2026-02-14</lastmod>
+    <loc>https://protoverse-early-distress-support.netlify.app/contact</loc>
+    <lastmod>2026-02-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
+
 </urlset>

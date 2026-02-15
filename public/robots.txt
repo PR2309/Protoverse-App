@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://distresssupport.app/sitemap.xml
+Sitemap: https://protoverse-early-distress-support.netlify.app/sitemap.xml

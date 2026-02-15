@@ -50,6 +50,7 @@ A compassionate, privacy-focused Progressive Web App (PWA) designed to support e
 
 ```
 protoverse-app/
+├── About/               # Workflow & Planning (icons, manifest, sitemap)
 ├── public/              # Static assets (icons, manifest, sitemap)
 ├── src/
 │   ├── components/      # Reusable UI components
