@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ThoughtOfTheWeek from './ThoughtOfTheWeek';
 import { saveMoodCheckIn, getWeeklyCheckIns, getStreak, getAverageStress, STORAGE_KEYS } from '../utils/storage';
 
 const MOODS = [
@@ -81,7 +82,7 @@ const Home = () => {
                                 Install for quick access and offline support
                             </p>
                         </div>
-                        <div className="flex gap-s">
+                        <div className="flex gap-s" style={{ flexDirection: "row" }}>
                             <button className="btn btn-primary" onClick={handleInstallClick}>Install</button>
                             <button className="btn btn-secondary" onClick={() => setShowInstallPrompt(false)}>Later</button>
                         </div>
@@ -89,10 +90,13 @@ const Home = () => {
                 </div>
             )}
 
-            <div className="text-center mb-xl" style={{ marginBlock: '5rem' }}>
-                <h1>{getGreeting()}</h1>
-                <p className="text-muted">Welcome back to your safe space</p>
-                {streak > 0 && <div className="streak-badge">{streak} day streak</div>}
+            <div className="home-hero">
+                <div className="homeGreeting">
+                    <h1>{getGreeting()}</h1>
+                    <p className="text-muted">Welcome back to your safe space</p>
+                    {streak > 0 && <div className="streak-badge">{streak} day streak</div>}
+                </div>
+                <ThoughtOfTheWeek />
             </div>
 
             <div className="card-elevated mb-l">

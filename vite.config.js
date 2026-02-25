@@ -7,17 +7,32 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'icon-192.svg', 'icon-512.svg'],
+      includeAssets: ['favicon.ico', 'icon-192.svg', 'icon-512.svg', 'icon-192.png', 'icon-512.png'],
       manifest: {
+        id: '/',
         name: 'Early Emotional Distress Detection & Support',
         short_name: 'Distress Support',
+
         description: 'Mental health support app for early-career individuals',
-        theme_color: '#4A90E2',
-        background_color: '#F0F2F5',
-        display: 'standalone',
-        orientation: 'portrait',
-        scope: '/',
+
         start_url: '/',
+        scope: '/',
+        dir: 'ltr',
+        lang: 'en-US',
+
+        display: 'standalone',
+        display_override: ['standalone', 'minimal-ui', 'browser'],
+
+        orientation: 'any',
+
+        categories: ['health', 'medical', 'lifestyle', 'productivity'],
+
+        theme_color: '#5F7FA8',
+        background_color: '#E9EEF3',
+
+        related_applications: [],
+        prefer_related_applications: false,
+
         icons: [
           {
             src: 'icon-192.svg',
@@ -30,11 +45,44 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/svg+xml',
             purpose: 'any maskable'
+          },
+          {
+            src: 'icon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
           }
-        ]
+        ],
+
+        shortcuts: [
+          {
+            name: 'Emergency Help',
+            short_name: 'Emergency',
+            url: '/emergency',
+            icons: [{ src: '/icon-512.png', sizes: '512x512' }]
+          },
+          {
+            name: 'Stress Relief Exercises',
+            short_name: 'Exercises',
+            url: '/exercises',
+            icons: [{ src: '/icon-512.png', sizes: '512x512' }]
+          },
+          {
+            name: 'AI Support Chat',
+            short_name: 'AI Chat',
+            url: '/chat',
+            icons: [{ src: '/icon-512.png', sizes: '512x512' }]
+          }
+      ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff,woff2}'],
+        globPatterns: ['**/*.{js,css,html,json,ico,png,svg,woff,woff2}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

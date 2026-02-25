@@ -15,6 +15,7 @@ import Home from './components/Home';
 import Emergency from './components/Emergency';
 import Chat from './components/Chat';
 import Community from './components/Community';
+import ThoughtOfTheWeek from './components/ThoughtOfTheWeek';
 import NotFound from './components/NotFound';
 
 // Exercises
@@ -37,6 +38,7 @@ const ScrollToTop = () => {
 
 function App() {
   const [theme, setTheme] = useState('light');
+  const [thought, setThought] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {

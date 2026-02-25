@@ -27,7 +27,7 @@ A compassionate, privacy-focused Progressive Web App (PWA) designed to support e
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/Protoverse.git
+    git clone https://github.com/PR2309/Protoverse.git
     cd Protoverse/protoverse-app
     ```
 
@@ -50,7 +50,6 @@ A compassionate, privacy-focused Progressive Web App (PWA) designed to support e
 
 ```
 protoverse-app/
-├── About/               # Workflow & Planning (icons, manifest, sitemap)
 ├── public/              # Static assets (icons, manifest, sitemap)
 ├── src/
 │   ├── components/      # Reusable UI components
