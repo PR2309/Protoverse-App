@@ -1,0 +1,30 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: protoverse-app/package-lock.json
+          
+      - name: Install dependencies
+        working-directory: protoverse-app
+        run: npm ci
+        
+      - name: Run tests
+        working-directory: protoverse-app
+        run: npm test
